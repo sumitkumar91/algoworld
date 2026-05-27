@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Play, Hash, AlertCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './KaprekarRoutine.css';
@@ -86,6 +87,11 @@ const KaprekarRoutine = () => {
 
   return (
     <div className="container animate-fade-in kaprekar-container">
+      <SEO 
+        title="Kaprekar's Routine - AlgoWorld" 
+        description="Visualize Kaprekar's Routine for 4-digit numbers and discover the magic of the 6174 constant." 
+        path="/kaprekar" 
+      />
       <div className="kaprekar-header">
         <h1>Kaprekar's Routine <Hash size={36} className="inline-icon" /></h1>
         <p className="subtitle">The mystery of 6174: All 4-digit numbers lead here.</p>

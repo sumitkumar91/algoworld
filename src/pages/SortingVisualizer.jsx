@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, RotateCcw, Settings2, Swords } from 'lucide-react';
+import { Play, RotateCcw, FastForward, SlidersHorizontal, BarChart3, LayoutGrid, Settings2, Swords } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './SortingVisualizer.css';
@@ -163,6 +164,11 @@ const SortingVisualizer = () => {
 
   return (
     <div className="container animate-fade-in sv-container">
+      <SEO 
+        title="Sorting Algorithms - AlgoWorld" 
+        description="Visualize and race Sorting Algorithms like Quick Sort, Merge Sort, Insertion Sort, and Selection Sort." 
+        path="/sorting" 
+      />
       <div className="sv-header">
         <h1>Sorting Visualizer <span className="algo-badge">{algoName}</span></h1>
         <p className="subtitle">Visualize how different sorting algorithms order a random set of numbers.</p>

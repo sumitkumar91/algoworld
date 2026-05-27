@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Play, Share2, Layers, Network, SkipForward, Pause, RotateCcw, Edit3, Check, Trash2, Map, Link2, GitCommit } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './GraphVisualizer.css';
@@ -259,6 +260,11 @@ const GraphVisualizer = () => {
 
   return (
     <div className="container animate-fade-in graph-container">
+      <SEO 
+        title="Graph Traversals & Builder - AlgoWorld" 
+        description="Build custom graphs and visualize Dijkstra's, Kruskal's, Prim's, BFS, and DFS algorithms step-by-step." 
+        path="/graph" 
+      />
       <div className="graph-header">
         <h1>Graph Traversals <Network size={36} className="inline-icon" /></h1>
         <p className="subtitle">Build graphs and visualize search algorithms and Minimum Spanning Trees.</p>

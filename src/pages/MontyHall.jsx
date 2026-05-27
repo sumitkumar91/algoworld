@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Play, RotateCcw, CarFront, HelpCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './MontyHall.css';
@@ -120,6 +121,11 @@ const MontyHall = () => {
 
   return (
     <div className="container animate-fade-in mh-container">
+      <SEO 
+        title="Monty Hall Problem - AlgoWorld" 
+        description="Simulate the Monty Hall Problem to see why switching doors doubles your chances of winning." 
+        path="/monty-hall" 
+      />
       <div className="mh-header">
         <h1>Monty Hall Problem</h1>
         <p className="subtitle">Is it better to swap your choice or stay after the host reveals a goat? Simulate it to find out.</p>

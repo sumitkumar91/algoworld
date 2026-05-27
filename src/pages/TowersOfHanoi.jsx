@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { RotateCcw, Play, Settings2 } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './TowersOfHanoi.css';
@@ -113,6 +114,11 @@ const TowersOfHanoi = () => {
 
   return (
     <div className="container animate-fade-in tohi-container">
+      <SEO 
+        title="Towers of Hanoi - AlgoWorld" 
+        description="Visualize and solve the classic Towers of Hanoi puzzle recursively. Adjust disks and see the optimal solution." 
+        path="/hanoi" 
+      />
       <div className="tohi-header">
         <h1>Towers of Hanoi</h1>
         <p className="subtitle">Move all disks from the first peg to the last peg. You cannot place a larger disk onto a smaller disk.</p>

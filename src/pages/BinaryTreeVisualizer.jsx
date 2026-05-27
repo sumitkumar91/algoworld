@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Plus, Trash2, Search, Play } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './BinaryTreeVisualizer.css';
@@ -206,6 +207,11 @@ const BinaryTreeVisualizer = () => {
 
   return (
     <div className="container animate-fade-in btv-container">
+      <SEO 
+        title="Binary Search Tree - AlgoWorld" 
+        description="Visualize Binary Search Tree insertions, deletions, searches, and traversals." 
+        path="/tree" 
+      />
       <div className="btv-header">
         <h1>Binary Search Tree</h1>
         <p className="subtitle">Visualize insertions, deletions, searches, and depth-first traversals on a BST.</p>

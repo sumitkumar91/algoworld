@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network } from 'lucide-react';
+import SEO from '../components/SEO';
 import Card from '../components/Card';
 import './Dashboard.css';
 
@@ -67,6 +68,11 @@ const Dashboard = () => {
 
   return (
     <div className="container animate-fade-in">
+      <SEO 
+        title="AlgoWorld - Interactive Algorithm Visualizations" 
+        description="Explore the AlgoWorld! Interactive mathematical simulations and logic puzzles including Sorting, Graphs, Towers of Hanoi, and more." 
+        path="/" 
+      />
       <section className="hero-section">
         <h1 className="hero-title">
           Explore the <span className="highlight">AlgoWorld</span>

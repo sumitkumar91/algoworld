@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Play, TrendingUp } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Play, TrendingDown, TrendingUp } from 'lucide-react';
+import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './CollatzConjecture.css';
@@ -72,6 +73,11 @@ const CollatzConjecture = () => {
 
   return (
     <div className="container animate-fade-in collatz-container">
+      <SEO 
+        title="Collatz Conjecture - AlgoWorld" 
+        description="Visualize the Collatz Conjecture (3n + 1 problem). See the hailstone sequence graph for any starting number." 
+        path="/collatz" 
+      />
       <div className="collatz-header">
         <h1>Collatz Conjecture <TrendingUp size={36} className="inline-icon" /></h1>
         <p className="subtitle">The "3n + 1" Problem: Will it always reach 1?</p>
