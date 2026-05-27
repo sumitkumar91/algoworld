@@ -1,0 +1,37 @@
+.custom-card {
+  padding: 1.5rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-card.hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow-purple);
+  border-color: rgba(157, 78, 221, 0.5);
+}
+
+.custom-card.clickable {
+  cursor: pointer;
+}
+
+.custom-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: all var(--transition-slow);
+}
+
+.custom-card.hover-effect:hover::before {
+  left: 200%;
+}

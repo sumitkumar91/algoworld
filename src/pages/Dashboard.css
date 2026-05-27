@@ -1,0 +1,120 @@
+.hero-section {
+  text-align: center;
+  padding: 4rem 0 3rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-title .highlight {
+  background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.simulations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+.sim-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sim-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.icon-wrapper {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cyan-theme .icon-wrapper {
+  background: rgba(0, 240, 255, 0.1);
+}
+
+.purple-theme .icon-wrapper {
+  background: rgba(157, 78, 221, 0.1);
+}
+
+.orange-theme .icon-wrapper {
+  background: rgba(255, 127, 80, 0.1);
+}
+
+.yellow-theme .icon-wrapper {
+  background: rgba(205, 220, 57, 0.1);
+}
+
+.hanoi-icon {
+  color: var(--accent-cyan);
+}
+
+.monty-icon {
+  color: var(--accent-purple);
+}
+
+.sim-title {
+  font-size: 1.5rem;
+}
+
+.sim-description {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.sim-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-glass);
+}
+
+.launch-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.cyan-theme .launch-text {
+  color: var(--accent-cyan);
+}
+
+.purple-theme .launch-text {
+  color: var(--accent-purple);
+}
+
+.orange-theme .launch-text {
+  color: #ff7f50;
+}
+
+.yellow-theme .launch-text {
+  color: #cddc39;
+}
+
+.sim-card:hover .launch-text {
+  filter: brightness(1.2);
+}
