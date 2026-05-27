@@ -1,8 +1,8 @@
-# AlgoVerse 🌌
+# AlgoWorld 🌌
 
-AlgoVerse is an interactive web-based simulation platform designed to help you visualize and understand classic algorithms, data structures, and mathematical puzzles. 
+AlgoWorld is an interactive web-based simulation platform designed to help you visualize and understand classic algorithms, data structures, and mathematical puzzles. 
 
-Built with modern web technologies, AlgoVerse features a premium glassmorphic design, smooth micro-animations, and dynamic real-time visualization engines to bring abstract computer science concepts to life.
+Built with modern web technologies, AlgoWorld features a premium glassmorphic design, smooth micro-animations, and dynamic real-time visualization engines to bring abstract computer science concepts to life.
 
 ## Features & Simulations
 

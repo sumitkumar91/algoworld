@@ -69,7 +69,7 @@ const Dashboard = () => {
     <div className="container animate-fade-in">
       <section className="hero-section">
         <h1 className="hero-title">
-          Explore the <span className="highlight">AlgoVerse</span>
+          Explore the <span className="highlight">AlgoWorld</span>
         </h1>
         <p className="hero-subtitle">
           Interactive mathematical simulations and logic puzzles.
