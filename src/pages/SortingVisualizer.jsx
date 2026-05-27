@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Play, RotateCcw, BarChart2, Settings2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Play, RotateCcw, Settings2, Swords } from 'lucide-react';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './SortingVisualizer.css';
@@ -14,30 +14,52 @@ const PRIMARY_COLOR = 'var(--accent-cyan)';
 const SECONDARY_COLOR = 'var(--danger)';
 const SORTED_COLOR = 'var(--success)';
 
+const ALGORITHMS = [
+  { id: 'insertion', name: 'Insertion Sort', getAnimations: getInsertionSortAnimations },
+  { id: 'selection', name: 'Selection Sort', getAnimations: getSelectionSortAnimations },
+  { id: 'merge', name: 'Merge Sort', getAnimations: getMergeSortAnimations },
+  { id: 'quick', name: 'Quick Sort', getAnimations: getQuickSortAnimations },
+];
+
 const SortingVisualizer = () => {
   const [array, setArray] = useState([]);
   const [arraySize, setArraySize] = useState(50);
   const [animationSpeed, setAnimationSpeed] = useState(10);
   const [isRunning, setIsRunning] = useState(false);
   const [algoName, setAlgoName] = useState('Select an Algorithm');
+  const [isRacing, setIsRacing] = useState(false);
+  
+  // Keep track of timeouts to clear them if unmounted/reset early (optional, but good practice)
+  const timeoutsRef = useRef([]);
 
   useEffect(() => {
     resetArray();
+    return () => {
+      // Clear timeouts on unmount
+      timeoutsRef.current.forEach(clearTimeout);
+    };
   }, [arraySize]);
 
   const resetArray = () => {
     if (isRunning) return;
+    
+    // Clear any pending animations
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+    
+    setIsRacing(false);
     const newArray = [];
     for (let i = 0; i < arraySize; i++) {
       newArray.push(randomIntFromInterval(10, 400));
     }
     setArray(newArray);
     
-    // Reset colors
-    const arrayBars = document.getElementsByClassName('array-bar');
-    for (let i = 0; i < arrayBars.length; i++) {
-      arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
-    }
+    // Reset colors for all bars in the DOM
+    const allBars = document.querySelectorAll('.array-bar');
+    allBars.forEach(bar => {
+      bar.style.backgroundColor = PRIMARY_COLOR;
+    });
+    
     setAlgoName('Select an Algorithm');
   };
 
@@ -45,62 +67,99 @@ const SortingVisualizer = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const animateSort = (animations, algo) => {
+  const animateSort = (animations, algo, prefix = 'main') => {
+    return new Promise((resolve) => {
+      const arrayBars = document.getElementsByClassName(`array-bar-${prefix}`);
+      
+      for (let i = 0; i < animations.length; i++) {
+        const [type, idx1, arg3] = animations[i];
+        
+        if (type === 'compare' || type === 'revert') {
+          const color = type === 'compare' ? SECONDARY_COLOR : PRIMARY_COLOR;
+          const t = setTimeout(() => {
+            if (arrayBars[idx1]) arrayBars[idx1].style.backgroundColor = color;
+            if (arrayBars[arg3]) arrayBars[arg3].style.backgroundColor = color;
+          }, i * animationSpeed);
+          timeoutsRef.current.push(t);
+        } else if (type === 'overwrite') {
+          const t = setTimeout(() => {
+            if (arrayBars[idx1]) {
+              arrayBars[idx1].style.height = `${arg3}px`;
+            }
+          }, i * animationSpeed);
+          timeoutsRef.current.push(t);
+        }
+      }
+
+      // After sort completes, sweeping green effect
+      const tAfter = setTimeout(() => {
+        for (let i = 0; i < arrayBars.length; i++) {
+          const tSweep = setTimeout(() => {
+            if (arrayBars[i]) arrayBars[i].style.backgroundColor = SORTED_COLOR;
+          }, i * (1000 / Math.max(1, arrayBars.length)));
+          timeoutsRef.current.push(tSweep);
+        }
+        
+        const tDone = setTimeout(() => {
+          resolve();
+        }, 1000);
+        timeoutsRef.current.push(tDone);
+        
+      }, animations.length * animationSpeed);
+      
+      timeoutsRef.current.push(tAfter);
+    });
+  };
+
+  const runSingleSort = async (algoObj) => {
     if (isRunning) return;
     setIsRunning(true);
-    setAlgoName(algo);
+    setIsRacing(false);
+    setAlgoName(algoObj.name);
 
-    const arrayBars = document.getElementsByClassName('array-bar');
-    for (let i = 0; i < animations.length; i++) {
-      const [type, idx1, arg3] = animations[i];
-      
-      if (type === 'compare' || type === 'revert') {
-        const color = type === 'compare' ? SECONDARY_COLOR : PRIMARY_COLOR;
-        setTimeout(() => {
-          if (arrayBars[idx1]) arrayBars[idx1].style.backgroundColor = color;
-          if (arrayBars[arg3]) arrayBars[arg3].style.backgroundColor = color;
-        }, i * animationSpeed);
-      } else if (type === 'overwrite') {
-        setTimeout(() => {
-          if (arrayBars[idx1]) {
-            arrayBars[idx1].style.height = `${arg3}px`;
-          }
-        }, i * animationSpeed);
-      }
-    }
-
-    // After sort completes
-    setTimeout(() => {
-      for (let i = 0; i < arrayBars.length; i++) {
-        setTimeout(() => {
-          if (arrayBars[i]) arrayBars[i].style.backgroundColor = SORTED_COLOR;
-        }, i * (1000 / arrayBars.length)); // nice sweeping effect
-      }
-      setTimeout(() => {
-        setIsRunning(false);
-      }, 1000);
-    }, animations.length * animationSpeed);
+    // Pass a copy of the array so the underlying logic doesn't mutate our state directly
+    const animations = algoObj.getAnimations(array.slice());
+    await animateSort(animations, algoObj.name, 'main');
+    
+    setIsRunning(false);
   };
 
-  const mergeSort = () => {
-    const animations = getMergeSortAnimations(array);
-    animateSort(animations, 'Merge Sort');
+  const raceAll = async () => {
+    if (isRunning) return;
+    setIsRunning(true);
+    setIsRacing(true);
+    setAlgoName('Racing All Algorithms');
+
+    // Wait a brief moment for React to render the 4 grids
+    await new Promise(r => setTimeout(r, 100));
+
+    // Start all 4 animations in parallel
+    const promises = ALGORITHMS.map(algo => {
+      const animations = algo.getAnimations(array.slice());
+      return animateSort(animations, algo.name, algo.id);
+    });
+
+    await Promise.all(promises);
+    setIsRunning(false);
   };
 
-  const quickSort = () => {
-    const animations = getQuickSortAnimations(array);
-    animateSort(animations, 'Quick Sort');
-  };
-
-  const insertionSort = () => {
-    const animations = getInsertionSortAnimations(array);
-    animateSort(animations, 'Insertion Sort');
-  };
-
-  const selectionSort = () => {
-    const animations = getSelectionSortAnimations(array);
-    animateSort(animations, 'Selection Sort');
-  };
+  const renderArrayGraph = (prefix, label) => (
+    <div className="race-chart-container">
+      {label && <div className="race-label">{label}</div>}
+      <div className="array-container">
+        {array.map((value, idx) => (
+          <div
+            className={`array-bar array-bar-${prefix}`}
+            key={idx}
+            style={{
+              height: `${value}px`,
+              width: `${Math.max(2, (isRacing ? 280 : 600) / arraySize)}px`,
+            }}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="container animate-fade-in sv-container">
@@ -114,11 +173,27 @@ const SortingVisualizer = () => {
           <Card className="controls-card">
             <h3>Algorithms</h3>
             <div className="action-buttons mb-4">
-              <Button variant="primary" onClick={insertionSort} disabled={isRunning} className="w-full mb-2">Insertion Sort</Button>
-              <Button variant="primary" onClick={selectionSort} disabled={isRunning} className="w-full mb-2">Selection Sort</Button>
-              <Button variant="primary" onClick={mergeSort} disabled={isRunning} className="w-full mb-2">Merge Sort</Button>
-              <Button variant="primary" onClick={quickSort} disabled={isRunning} className="w-full">Quick Sort</Button>
+              {ALGORITHMS.map(algo => (
+                <Button 
+                  key={algo.id}
+                  variant="primary" 
+                  onClick={() => runSingleSort(algo)} 
+                  disabled={isRunning} 
+                  className="w-full mb-2"
+                >
+                  {algo.name}
+                </Button>
+              ))}
             </div>
+            
+            <Button 
+              variant="secondary" 
+              onClick={raceAll} 
+              disabled={isRunning} 
+              className="w-full flex-center gap-2 mb-2 race-btn"
+            >
+              <Swords size={16} /> Race All
+            </Button>
 
             <div className="divider"></div>
 
@@ -175,18 +250,17 @@ const SortingVisualizer = () => {
         
         <div className="sv-main">
           <Card className="array-card">
-            <div className="array-container">
-              {array.map((value, idx) => (
-                <div
-                  className="array-bar"
-                  key={idx}
-                  style={{
-                    height: `${value}px`,
-                    width: `${Math.max(2, 600 / arraySize)}px`,
-                  }}
-                ></div>
-              ))}
-            </div>
+            {isRacing ? (
+              <div className="race-grid">
+                {ALGORITHMS.map(algo => (
+                  <div key={algo.id} className="race-cell">
+                    {renderArrayGraph(algo.id, algo.name)}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              renderArrayGraph('main', null)
+            )}
           </Card>
         </div>
       </div>

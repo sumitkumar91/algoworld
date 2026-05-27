@@ -5,6 +5,9 @@ import TowersOfHanoi from './pages/TowersOfHanoi';
 import MontyHall from './pages/MontyHall';
 import SortingVisualizer from './pages/SortingVisualizer';
 import BinaryTreeVisualizer from './pages/BinaryTreeVisualizer';
+import CollatzConjecture from './pages/CollatzConjecture';
+import KaprekarRoutine from './pages/KaprekarRoutine';
+import GraphVisualizer from './pages/GraphVisualizer';
 import './App.css';
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
             <Route path="/monty-hall" element={<MontyHall />} />
             <Route path="/sorting" element={<SortingVisualizer />} />
             <Route path="/tree" element={<BinaryTreeVisualizer />} />
+            <Route path="/collatz" element={<CollatzConjecture />} />
+            <Route path="/kaprekar" element={<KaprekarRoutine />} />
+            <Route path="/graph" element={<GraphVisualizer />} />
           </Routes>
         </main>
       </div>

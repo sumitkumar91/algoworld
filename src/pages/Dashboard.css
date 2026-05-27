@@ -68,6 +68,18 @@
   background: rgba(205, 220, 57, 0.1);
 }
 
+.pink-theme .icon-wrapper {
+  background: rgba(224, 64, 251, 0.1);
+}
+
+.gold-theme .icon-wrapper {
+  background: rgba(255, 179, 0, 0.1);
+}
+
+.blue-theme .icon-wrapper {
+  background: rgba(0, 229, 255, 0.1);
+}
+
 .hanoi-icon {
   color: var(--accent-cyan);
 }
@@ -113,6 +125,18 @@
 
 .yellow-theme .launch-text {
   color: #cddc39;
+}
+
+.pink-theme .launch-text {
+  color: #e040fb;
+}
+
+.gold-theme .launch-text {
+  color: #ffb300;
+}
+
+.blue-theme .launch-text {
+  color: #00e5ff;
 }
 
 .sim-card:hover .launch-text {

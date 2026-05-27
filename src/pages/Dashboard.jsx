@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Layers, DoorOpen, BarChart2, GitMerge } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network } from 'lucide-react';
 import Card from '../components/Card';
 import './Dashboard.css';
 
@@ -35,6 +35,30 @@ const simulations = [
     icon: <GitMerge size={32} className="sim-icon tree-icon" style={{color: '#cddc39'}} />,
     path: '/tree',
     color: 'yellow'
+  },
+  {
+    id: 'graph',
+    title: 'Graph Traversals',
+    description: 'Visualize Breadth-First Search (Queue) and Depth-First Search (Stack) on a network of nodes.',
+    icon: <Network size={32} className="sim-icon graph-icon" style={{color: '#00e5ff'}} />,
+    path: '/graph',
+    color: 'blue'
+  },
+  {
+    id: 'collatz',
+    title: 'Collatz Conjecture',
+    description: 'The "3n + 1" problem: Visualize the wild fluctuations of the hailstone sequence as it charts its path to 1.',
+    icon: <TrendingUp size={32} className="sim-icon collatz-icon" style={{color: '#e040fb'}} />,
+    path: '/collatz',
+    color: 'pink'
+  },
+  {
+    id: 'kaprekar',
+    title: 'Kaprekar\'s Routine',
+    description: 'The mystery of 6174: Sort, subtract, and repeat to watch any 4-digit number fall into Kaprekar\'s black hole.',
+    icon: <Hash size={32} className="sim-icon kaprekar-icon" style={{color: '#ffb300'}} />,
+    path: '/kaprekar',
+    color: 'gold'
   }
 ];
 

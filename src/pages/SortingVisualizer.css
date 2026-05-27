@@ -41,9 +41,9 @@
 .array-card {
   padding: 2rem;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   justify-content: center;
-  height: 500px;
+  min-height: 600px;
   overflow: hidden;
 }
 
@@ -53,7 +53,7 @@
   justify-content: center;
   gap: 1px;
   width: 100%;
-  height: 400px;
+  height: 100%; /* Change from fixed 400px to 100% */
 }
 
 .array-bar {
@@ -86,6 +86,58 @@
 .legend-color.primary { background-color: var(--accent-cyan); }
 .legend-color.secondary { background-color: var(--danger); }
 .legend-color.sorted { background-color: var(--success); }
+
+.race-btn {
+  background: rgba(255, 127, 80, 0.1);
+  color: #ff7f50;
+  border: 1px solid #ff7f50;
+}
+.race-btn:hover:not(:disabled) {
+  background: rgba(255, 127, 80, 0.2);
+  box-shadow: 0 0 15px rgba(255, 127, 80, 0.4);
+}
+
+.race-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .race-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.race-cell {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.race-chart-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+}
+
+.race-label {
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  color: #ff7f50;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
 
 .w-full { width: 100%; }
 .mb-2 { margin-bottom: 0.5rem; }
