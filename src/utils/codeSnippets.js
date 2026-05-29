@@ -413,37 +413,48 @@ export const searchSnippets = {
     return -1`
 };
 
-export const hashmapSnippets = {
-  put: `ALGORITHM PUT(Key, Value)
+export const hashtableSnippets = {
+  chaining: {
+    put:
+`// Separate Chaining — PUT(Key, Value)
+// Time: O(1) avg, O(n) worst | Space: O(n)
+ALGORITHM PUT(Key, Value)
     index = Hash(Key) % Capacity
     node = Buckets[index]
-    
+
     while node is not null
         if node.key == Key
-            node.value = Value
+            node.value = Value   // update existing
             return
         node = node.next
-        
+
+    // Key not found — prepend to chain
     newNode = CreateNode(Key, Value)
     newNode.next = Buckets[index]
     Buckets[index] = newNode`,
-    
-  get: `ALGORITHM GET(Key)
+
+    get:
+`// Separate Chaining — GET(Key)
+// Time: O(1) avg, O(n) worst
+ALGORITHM GET(Key)
     index = Hash(Key) % Capacity
     node = Buckets[index]
-    
+
     while node is not null
         if node.key == Key
             return node.value
         node = node.next
-        
-    return null`,
-    
-  remove: `ALGORITHM REMOVE(Key)
+
+    return null  // not found`,
+
+    remove:
+`// Separate Chaining — REMOVE(Key)
+// Time: O(1) avg, O(n) worst
+ALGORITHM REMOVE(Key)
     index = Hash(Key) % Capacity
     node = Buckets[index]
     prev = null
-    
+
     while node is not null
         if node.key == Key
             if prev == null
@@ -453,6 +464,145 @@ export const hashmapSnippets = {
             return true
         prev = node
         node = node.next
-        
-    return false`
+
+    return false  // not found`,
+  },
+
+  linear: {
+    put:
+`// Linear Probing — PUT(Key, Value)
+// Time: O(1) avg | Space: O(n)
+// Probe sequence: (H + i) % Capacity
+ALGORITHM PUT(Key, Value)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step) % Capacity
+
+        if Buckets[i] is EMPTY or TOMBSTONE
+            Buckets[i] = { key: Key, value: Value }
+            return
+        if Buckets[i].key == Key
+            Buckets[i].value = Value  // update
+            return
+
+        step = step + 1
+
+    error "Hash table is full"`,
+
+    get:
+`// Linear Probing — GET(Key)
+// Time: O(1) avg
+// Probe sequence: (H + i) % Capacity
+ALGORITHM GET(Key)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step) % Capacity
+
+        if Buckets[i] is EMPTY
+            return null   // stopped at empty slot
+        if Buckets[i] is not TOMBSTONE
+            if Buckets[i].key == Key
+                return Buckets[i].value
+
+        step = step + 1
+
+    return null  // not found`,
+
+    remove:
+`// Linear Probing — REMOVE(Key)
+// Uses TOMBSTONE to preserve probe chains
+// Time: O(1) avg
+ALGORITHM REMOVE(Key)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step) % Capacity
+
+        if Buckets[i] is EMPTY
+            return false  // not found
+        if Buckets[i] is not TOMBSTONE
+            if Buckets[i].key == Key
+                Buckets[i] = TOMBSTONE
+                return true
+
+        step = step + 1
+
+    return false`,
+  },
+
+  quadratic: {
+    put:
+`// Quadratic Probing — PUT(Key, Value)
+// Time: O(1) avg | Space: O(n)
+// Probe sequence: (H + i²) % Capacity
+ALGORITHM PUT(Key, Value)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step*step) % Capacity
+
+        if Buckets[i] is EMPTY or TOMBSTONE
+            Buckets[i] = { key: Key, value: Value }
+            return
+        if Buckets[i].key == Key
+            Buckets[i].value = Value  // update
+            return
+
+        step = step + 1
+
+    error "Hash table is full"`,
+
+    get:
+`// Quadratic Probing — GET(Key)
+// Time: O(1) avg
+// Probe sequence: (H + i²) % Capacity
+ALGORITHM GET(Key)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step*step) % Capacity
+
+        if Buckets[i] is EMPTY
+            return null
+        if Buckets[i] is not TOMBSTONE
+            if Buckets[i].key == Key
+                return Buckets[i].value
+
+        step = step + 1
+
+    return null`,
+
+    remove:
+`// Quadratic Probing — REMOVE(Key)
+// Uses TOMBSTONE to preserve probe chains
+// Time: O(1) avg
+ALGORITHM REMOVE(Key)
+    index = Hash(Key) % Capacity
+    step  = 0
+
+    while step < Capacity
+        i = (index + step*step) % Capacity
+
+        if Buckets[i] is EMPTY
+            return false
+        if Buckets[i] is not TOMBSTONE
+            if Buckets[i].key == Key
+                Buckets[i] = TOMBSTONE
+                return true
+
+        step = step + 1
+
+    return false`,
+  },
 };
+
+// Keep legacy export for backward compat
+export const hashmapSnippets = hashtableSnippets.chaining;
+

@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
-import { hashmapSnippets } from '../utils/codeSnippets';
+import { hashtableSnippets } from '../utils/codeSnippets';
 import './HashTableVisualizer.css';
 
 const SVG_WIDTH = 900;
@@ -37,8 +37,8 @@ const HashMapVisualizer = () => {
   const [hashMessage, setHashMessage] = useState('Hash Computation: Waiting for input...');
   
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
-  const [currentCode, setCurrentCode] = useState(hashmapSnippets.put);
-  const [modalTitle, setModalTitle] = useState('Hash Map: Put');
+  const [currentCode, setCurrentCode] = useState(hashtableSnippets.chaining.put);
+  const [modalTitle, setModalTitle] = useState('Hash Table (Chaining): Put');
 
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -369,16 +369,12 @@ const HashMapVisualizer = () => {
   };
 
   const openCode = (type) => {
-    if (type === 'put') {
-      setCurrentCode(hashmapSnippets.put);
-      setModalTitle('Hash Map: Put');
-    } else if (type === 'get') {
-      setCurrentCode(hashmapSnippets.get);
-      setModalTitle('Hash Map: Get');
-    } else {
-      setCurrentCode(hashmapSnippets.remove);
-      setModalTitle('Hash Map: Remove');
-    }
+    const snippets = hashtableSnippets[collisionStrategy];
+    const strategyLabel = collisionStrategy === 'chaining' ? 'Chaining'
+      : collisionStrategy === 'linear' ? 'Linear Probing'
+      : 'Quadratic Probing';
+    setCurrentCode(snippets[type]);
+    setModalTitle(`Hash Table (${strategyLabel}): ${type.charAt(0).toUpperCase() + type.slice(1)}`);
     setIsCodeModalOpen(true);
   };
 
