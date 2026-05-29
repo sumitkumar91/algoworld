@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid } from 'lucide-react';
 
 export const categories = [
   {
@@ -33,6 +33,14 @@ export const categories = [
     color: 'green',
     icon: <Layers size={32} className="sim-icon" style={{color: '#4ade80'}} />,
     modules: [
+      {
+        id: 'array',
+        title: 'Arrays',
+        description: 'Visualize static arrays and contiguous memory operations.',
+        icon: <Grid size={32} className="sim-icon array-icon" style={{color: '#3b82f6'}} />,
+        path: '/array',
+        color: 'blue'
+      },
       {
         id: 'linked-list',
         title: 'Linked Lists',

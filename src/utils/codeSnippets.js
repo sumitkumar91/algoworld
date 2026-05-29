@@ -356,3 +356,29 @@ ALGORITHM DEQUEUE(Q)
             Q.head ← Q.head + 1
         return x`
 };
+
+
+
+export const arraySnippets = {
+  array: `ALGORITHM Insert(A, n, index, value)
+    if n == A.length
+        error "Array Overflow"
+    if index < 0 or index > n
+        error "Invalid Index"
+    for i = n downto index + 1
+        A[i] ← A[i-1]
+    A[index] ← value
+    n ← n + 1
+
+ALGORITHM Delete(A, n, index)
+    if index < 0 or index >= n
+        error "Invalid Index"
+    for i = index to n - 2
+        A[i] ← A[i+1]
+    n ← n - 1
+
+ALGORITHM Update(A, index, value)
+    if index < 0 or index >= n
+        error "Invalid Index"
+    A[index] ← value`
+};

@@ -12,6 +12,7 @@ import KaprekarRoutine from './pages/KaprekarRoutine';
 import GraphVisualizer from './pages/GraphVisualizer';
 import LinkedListVisualizer from './pages/LinkedListVisualizer';
 import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
+import ArrayVisualizer from './pages/ArrayVisualizer';
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="/graph" element={<GraphVisualizer />} />
               <Route path="/linked-list" element={<LinkedListVisualizer />} />
               <Route path="/stacks-queues" element={<StacksQueuesVisualizer />} />
+              <Route path="/array" element={<ArrayVisualizer />} />
             </Routes>
           </main>
         </div>
