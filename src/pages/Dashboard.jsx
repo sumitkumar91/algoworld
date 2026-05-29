@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2 } from 'lucide-react';
 import SEO from '../components/SEO';
 import Card from '../components/Card';
 import './Dashboard.css';
@@ -44,6 +44,14 @@ const simulations = [
     icon: <Network size={32} className="sim-icon graph-icon" style={{color: '#00e5ff'}} />,
     path: '/graph',
     color: 'blue'
+  },
+  {
+    id: 'linked-list',
+    title: 'Linked Lists',
+    description: 'Visualize insertions, deletions, and pointers for Singly, Doubly, and Circular Linked Lists.',
+    icon: <Link2 size={32} className="sim-icon list-icon" style={{color: '#4ade80'}} />,
+    path: '/linked-list',
+    color: 'green'
   },
   {
     id: 'collatz',

@@ -208,3 +208,114 @@ export const bstSnippets = {
     POSTORDER-TREE-WALK(x.right)
     print x.key`
 };
+
+export const linkedListSnippets = {
+  sll: `ALGORITHM SLL-INSERT-HEAD(L, x)
+  x.next ← L.head
+  L.head ← x
+
+ALGORITHM SLL-INSERT-TAIL(L, x)
+  IF L.head == NIL THEN
+    L.head ← x
+  ELSE
+    curr ← L.head
+    WHILE curr.next ≠ NIL DO
+      curr ← curr.next
+    curr.next ← x
+
+ALGORITHM SLL-DELETE(L, key)
+  curr ← L.head
+  prev ← NIL
+  WHILE curr ≠ NIL AND curr.key ≠ key DO
+    prev ← curr
+    curr ← curr.next
+  IF curr ≠ NIL THEN
+    IF prev == NIL THEN
+      L.head ← curr.next
+    ELSE
+      prev.next ← curr.next
+
+ALGORITHM LIST-SEARCH(L, k)
+  curr ← L.head
+  WHILE curr ≠ NIL AND curr.key ≠ k DO
+    curr ← curr.next
+  RETURN curr`,
+
+  dll: `ALGORITHM DLL-INSERT-HEAD(L, x)
+  x.next ← L.head
+  IF L.head ≠ NIL THEN
+    L.head.prev ← x
+  L.head ← x
+  x.prev ← NIL
+
+ALGORITHM DLL-INSERT-TAIL(L, x)
+  IF L.head == NIL THEN
+    L.head ← x
+    x.prev ← NIL
+    x.next ← NIL
+  ELSE
+    curr ← L.head
+    WHILE curr.next ≠ NIL DO
+      curr ← curr.next
+    curr.next ← x
+    x.prev ← curr
+    x.next ← NIL
+
+ALGORITHM DLL-DELETE(L, x)
+  IF x.prev ≠ NIL THEN
+    x.prev.next ← x.next
+  ELSE
+    L.head ← x.next
+  IF x.next ≠ NIL THEN
+    x.next.prev ← x.prev`,
+
+  csll: `ALGORITHM CSLL-INSERT-HEAD(L, x)
+  IF L.head == NIL THEN
+    L.head ← x
+    x.next ← L.head
+  ELSE
+    curr ← L.head
+    WHILE curr.next ≠ L.head DO
+      curr ← curr.next
+    x.next ← L.head
+    curr.next ← x
+    L.head ← x
+
+ALGORITHM CSLL-INSERT-TAIL(L, x)
+  IF L.head == NIL THEN
+    L.head ← x
+    x.next ← L.head
+  ELSE
+    curr ← L.head
+    WHILE curr.next ≠ L.head DO
+      curr ← curr.next
+    curr.next ← x
+    x.next ← L.head
+
+ALGORITHM CSLL-DELETE(L, key)
+  IF L.head == NIL THEN RETURN
+  
+  curr ← L.head
+  prev ← NIL
+  
+  // Find node
+  WHILE curr.key ≠ key DO
+    IF curr.next == L.head THEN RETURN  // Not found
+    prev ← curr
+    curr ← curr.next
+    
+  IF curr.next == L.head AND prev == NIL THEN
+    L.head ← NIL  // Only one node
+    RETURN
+    
+  IF curr == L.head THEN
+    // Deleting head
+    last ← L.head
+    WHILE last.next ≠ L.head DO
+      last ← last.next
+    L.head ← curr.next
+    last.next ← L.head
+  ELSE
+    // Deleting non-head
+    prev.next ← curr.next`
+};

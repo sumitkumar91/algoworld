@@ -9,6 +9,7 @@ import BinaryTreeVisualizer from './pages/BinaryTreeVisualizer';
 import CollatzConjecture from './pages/CollatzConjecture';
 import KaprekarRoutine from './pages/KaprekarRoutine';
 import GraphVisualizer from './pages/GraphVisualizer';
+import LinkedListVisualizer from './pages/LinkedListVisualizer';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/collatz" element={<CollatzConjecture />} />
               <Route path="/kaprekar" element={<KaprekarRoutine />} />
               <Route path="/graph" element={<GraphVisualizer />} />
+              <Route path="/linked-list" element={<LinkedListVisualizer />} />
             </Routes>
           </main>
         </div>
