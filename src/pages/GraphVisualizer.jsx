@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Share2, Layers, Network, SkipForward, Pause, RotateCcw, Edit3, Check, Trash2, Map, Link2, GitCommit } from 'lucide-react';
+import { Play, Share2, Layers, Network, SkipForward, Pause, RotateCcw, Edit3, Check, Trash2, Map, Link2, GitCommit, Code } from 'lucide-react';
 import SEO from '../components/SEO';
+import CodeModal from '../components/CodeModal';
+import { graphSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './GraphVisualizer.css';
@@ -23,6 +25,7 @@ const GraphVisualizer = () => {
   // Animation state
   const [frames, setFrames] = useState([]);
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
+  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
   
   // State from current frame
   const [activeNode, setActiveNode] = useState(null);
@@ -297,19 +300,32 @@ const GraphVisualizer = () => {
                 </div>
                 
                 <div className="action-buttons mt-4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <Button variant={isRunning ? 'secondary' : 'primary'} onClick={toggleSimulation} className="w-full flex-center gap-2 btn-graph" style={{ gridColumn: 'span 2' }} disabled={frames.length === 0}>
-                    {isRunning ? <Pause size={16} /> : <Play size={16} />} 
-                    {isRunning ? 'Pause' : (currentFrameIndex >= frames.length - 1 && frames.length > 0 ? 'Restart' : 'Auto Play')}
+                  <div className="flex gap-2">
+                  {!isRunning ? (
+                    <Button onClick={toggleSimulation} className="flex-1 flex-center gap-2 bg-gradient-to-r from-amber-400 to-orange-500 text-black border-0 hover:opacity-90">
+                      <Play size={18} /> Play
+                    </Button>
+                  ) : (
+                    <Button onClick={pauseSimulation} className="flex-1 flex-center gap-2" variant="secondary">
+                      <Pause size={18} /> Pause
+                    </Button>
+                  )}
+                  
+                  <Button onClick={stepForward} disabled={isRunning || frames.length === 0 || currentFrameIndex >= frames.length - 1} className="flex-1 flex-center gap-2" variant="secondary">
+                    <SkipForward size={18} /> Step
                   </Button>
                   
-                  <Button variant="secondary" onClick={stepForward} disabled={currentFrameIndex >= frames.length - 1 || isRunning || frames.length === 0} className="w-full flex-center gap-2">
-                    <SkipForward size={16} /> Step
-                  </Button>
-
-                  <Button variant="danger" onClick={resetSimulation} className="w-full flex-center gap-2">
-                    <RotateCcw size={16} /> Reset
+                  <Button onClick={resetSimulation} className="flex-1 flex-center gap-2" variant="secondary">
+                    <RotateCcw size={18} /> Reset
                   </Button>
                 </div>
+                
+                <div className="flex justify-center mt-3">
+                  <Button onClick={() => setIsCodeModalOpen(true)} variant="outline" className="w-full flex-center gap-2">
+                    <Code size={16} /> View {mode} Code
+                  </Button>
+                </div>
+              </div>
                 
                 <Button variant="secondary" onClick={toggleEditMode} className="w-full flex-center gap-2 mt-4">
                   <Edit3 size={16} /> Edit Graph
@@ -456,6 +472,13 @@ const GraphVisualizer = () => {
           </Card>
         </div>
       </div>
+      
+      <CodeModal 
+        isOpen={isCodeModalOpen} 
+        onClose={() => setIsCodeModalOpen(false)} 
+        code={graphSnippets[mode.toLowerCase()]} 
+        title={mode} 
+      />
     </div>
   );
 };

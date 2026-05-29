@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, RotateCcw, FastForward, SlidersHorizontal, BarChart3, LayoutGrid, Settings2, Swords } from 'lucide-react';
+import { Play, RotateCcw, FastForward, SlidersHorizontal, BarChart3, LayoutGrid, Settings2, Swords, Code } from 'lucide-react';
 import SEO from '../components/SEO';
+import CodeModal from '../components/CodeModal';
+import { sortingSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './SortingVisualizer.css';
@@ -28,18 +30,12 @@ const SortingVisualizer = () => {
   const [animationSpeed, setAnimationSpeed] = useState(10);
   const [isRunning, setIsRunning] = useState(false);
   const [algoName, setAlgoName] = useState('Select an Algorithm');
+  const [selectedAlgoId, setSelectedAlgoId] = useState('');
   const [isRacing, setIsRacing] = useState(false);
+  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
   
   // Keep track of timeouts to clear them if unmounted/reset early (optional, but good practice)
   const timeoutsRef = useRef([]);
-
-  useEffect(() => {
-    resetArray();
-    return () => {
-      // Clear timeouts on unmount
-      timeoutsRef.current.forEach(clearTimeout);
-    };
-  }, [arraySize]);
 
   const resetArray = () => {
     if (isRunning) return;
@@ -62,7 +58,17 @@ const SortingVisualizer = () => {
     });
     
     setAlgoName('Select an Algorithm');
+    setSelectedAlgoId('');
   };
+
+  useEffect(() => {
+    resetArray();
+    return () => {
+      // Clear timeouts on unmount
+      timeoutsRef.current.forEach(clearTimeout);
+    };
+  }, [arraySize]);
+
 
   const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -112,15 +118,16 @@ const SortingVisualizer = () => {
     });
   };
 
-  const runSingleSort = async (algoObj) => {
+  const runSingleSort = async (algo) => {
     if (isRunning) return;
     setIsRunning(true);
     setIsRacing(false);
-    setAlgoName(algoObj.name);
+    setAlgoName(algo.name);
+    setSelectedAlgoId(algo.id);
 
     // Pass a copy of the array so the underlying logic doesn't mutate our state directly
-    const animations = algoObj.getAnimations(array.slice());
-    await animateSort(animations, algoObj.name, 'main');
+    const animations = algo.getAnimations(array.slice());
+    await animateSort(animations, algo.name, 'main');
     
     setIsRunning(false);
   };
@@ -244,6 +251,15 @@ const SortingVisualizer = () => {
               >
                 <RotateCcw size={16} /> Generate New Array
               </Button>
+              {selectedAlgoId && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => setIsCodeModalOpen(true)} 
+                  className="w-full flex-center gap-2 mt-2"
+                >
+                  <Code size={16} /> View {algoName} Code
+                </Button>
+              )}
             </div>
             
             <div className="legend mt-4">
@@ -270,6 +286,12 @@ const SortingVisualizer = () => {
           </Card>
         </div>
       </div>
+      <CodeModal 
+        isOpen={isCodeModalOpen} 
+        onClose={() => setIsCodeModalOpen(false)} 
+        code={sortingSnippets[`${selectedAlgoId}Sort`]} 
+        title={algoName} 
+      />
     </div>
   );
 };

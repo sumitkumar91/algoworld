@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Search, Play } from 'lucide-react';
+import { Plus, Trash2, Search, Play, Code } from 'lucide-react';
 import SEO from '../components/SEO';
+import CodeModal from '../components/CodeModal';
+import { bstSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './BinaryTreeVisualizer.css';
@@ -24,6 +26,10 @@ const BinaryTreeVisualizer = () => {
   const [root, setRoot] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [isRunning, setIsRunning] = useState(false);
+  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
+  
+  // Combine all BST snippets into one string for the modal
+  const fullBstCode = Object.values(bstSnippets).join('\n\n');
   
   // Animation states
   const [highlightedNodes, setHighlightedNodes] = useState(new Set());
@@ -261,6 +267,12 @@ const BinaryTreeVisualizer = () => {
               <Trash2 size={16} /> Clear Tree
             </Button>
             
+            <div className="divider"></div>
+            
+            <Button variant="outline" onClick={() => setIsCodeModalOpen(true)} className="w-full flex-center gap-2">
+              <Code size={16} /> View BST Code
+            </Button>
+            
           </Card>
         </div>
         
@@ -286,6 +298,13 @@ const BinaryTreeVisualizer = () => {
           </Card>
         </div>
       </div>
+      
+      <CodeModal 
+        isOpen={isCodeModalOpen} 
+        onClose={() => setIsCodeModalOpen(false)} 
+        code={fullBstCode} 
+        title="Binary Search Tree" 
+      />
     </div>
   );
 };
