@@ -6,11 +6,12 @@ import { sortingSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './SortingVisualizer.css';
-import {
-  getInsertionSortAnimations,
+import { 
+  getMergeSortAnimations, 
+  getQuickSortAnimations, 
+  getInsertionSortAnimations, 
   getSelectionSortAnimations,
-  getMergeSortAnimations,
-  getQuickSortAnimations,
+  getBubbleSortAnimations
 } from '../utils/sortingAlgorithms';
 
 const PRIMARY_COLOR = 'var(--accent-cyan)';
@@ -18,6 +19,7 @@ const SECONDARY_COLOR = 'var(--danger)';
 const SORTED_COLOR = 'var(--success)';
 
 const ALGORITHMS = [
+  { id: 'bubble', name: 'Bubble Sort', getAnimations: getBubbleSortAnimations },
   { id: 'insertion', name: 'Insertion Sort', getAnimations: getInsertionSortAnimations },
   { id: 'selection', name: 'Selection Sort', getAnimations: getSelectionSortAnimations },
   { id: 'merge', name: 'Merge Sort', getAnimations: getMergeSortAnimations },

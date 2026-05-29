@@ -1,0 +1,141 @@
+.search-page-container {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  min-height: calc(100vh - 80px);
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.search-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.search-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: var(--accent-cyan);
+}
+
+.search-svg-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.search-node-group {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.search-node-rect {
+  fill: var(--bg-glass);
+  stroke: var(--accent-cyan);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.search-text-val {
+  fill: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.search-text-idx {
+  fill: var(--text-secondary);
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Status colors */
+.search-node-group.scanning .search-node-rect {
+  fill: rgba(255, 179, 0, 0.3); /* Gold */
+  stroke: #ffb300;
+  stroke-width: 3;
+}
+
+.search-node-group.found .search-node-rect {
+  fill: rgba(74, 222, 128, 0.3); /* Green */
+  stroke: #4ade80;
+  stroke-width: 3;
+}
+
+.search-node-group.not-found .search-node-rect {
+  fill: rgba(248, 113, 113, 0.3); /* Red */
+  stroke: #f87171;
+  stroke-width: 3;
+}
+
+.search-node-group.discarded {
+  opacity: 0.2; /* Grayed out */
+}
+
+/* Pointers */
+.search-pointer-text {
+  fill: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.search-pointer-line {
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  marker-end: url(#arrowhead);
+}
+
+@media (max-width: 1024px) {
+  .search-layout {
+    grid-template-columns: 1fr;
+  }
+}

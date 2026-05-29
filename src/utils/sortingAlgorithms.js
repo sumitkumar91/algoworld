@@ -1,3 +1,26 @@
+// Bubble Sort
+export function getBubbleSortAnimations(array) {
+  const animations = [];
+  const arr = array.slice();
+  const n = arr.length;
+  
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      animations.push(['compare', j, j + 1]);
+      animations.push(['revert', j, j + 1]);
+      
+      if (arr[j] > arr[j + 1]) {
+        animations.push(['overwrite', j, arr[j + 1]]);
+        animations.push(['overwrite', j + 1, arr[j]]);
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return animations;
+}
+
 // Selection Sort
 export function getSelectionSortAnimations(array) {
   const animations = [];

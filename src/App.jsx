@@ -6,6 +6,7 @@ import CategoryPage from './pages/CategoryPage';
 import TowersOfHanoi from './pages/TowersOfHanoi';
 import MontyHall from './pages/MontyHall';
 import SortingVisualizer from './pages/SortingVisualizer';
+import SearchVisualizer from './pages/SearchVisualizer';
 import BinaryTreeVisualizer from './pages/BinaryTreeVisualizer';
 import CollatzConjecture from './pages/CollatzConjecture';
 import KaprekarRoutine from './pages/KaprekarRoutine';
@@ -13,6 +14,7 @@ import GraphVisualizer from './pages/GraphVisualizer';
 import LinkedListVisualizer from './pages/LinkedListVisualizer';
 import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
 import ArrayVisualizer from './pages/ArrayVisualizer';
+import HashTableVisualizer from './pages/HashTableVisualizer';
 import './App.css';
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
               <Route path="/hanoi" element={<TowersOfHanoi />} />
               <Route path="/monty-hall" element={<MontyHall />} />
               <Route path="/sorting" element={<SortingVisualizer />} />
+              <Route path="/search" element={<SearchVisualizer />} />
               <Route path="/tree" element={<BinaryTreeVisualizer />} />
               <Route path="/collatz" element={<CollatzConjecture />} />
               <Route path="/kaprekar" element={<KaprekarRoutine />} />
@@ -35,6 +38,7 @@ function App() {
               <Route path="/linked-list" element={<LinkedListVisualizer />} />
               <Route path="/stacks-queues" element={<StacksQueuesVisualizer />} />
               <Route path="/array" element={<ArrayVisualizer />} />
+              <Route path="/hashmap" element={<HashTableVisualizer />} />
             </Routes>
           </main>
         </div>

@@ -72,6 +72,13 @@ export const graphSnippets = {
 };
 
 export const sortingSnippets = {
+  bubbleSort: `ALGORITHM BUBBLESORT(A)
+  n ← A.length
+  FOR i ← 0 TO n - 1 DO
+    FOR j ← 0 TO n - i - 2 DO
+      IF A[j] > A[j + 1] THEN
+        exchange A[j] with A[j + 1]`,
+        
   quickSort: `ALGORITHM QUICKSORT(A, p, r)
   IF p < r THEN
     q ← PARTITION(A, p, r)
@@ -381,4 +388,71 @@ ALGORITHM Update(A, index, value)
     if index < 0 or index >= n
         error "Invalid Index"
     A[index] ← value`
+};
+
+export const searchSnippets = {
+  linear: `ALGORITHM LinearSearch(A, n, target)
+    for i = 0 to n - 1
+        if A[i] == target
+            return i
+    return -1`,
+    
+  binary: `ALGORITHM BinarySearch(A, n, target)
+    L = 0
+    R = n - 1
+    
+    while L <= R
+        M = floor((L + R) / 2)
+        if A[M] == target
+            return M
+        else if A[M] < target
+            L = M + 1
+        else
+            R = M - 1
+            
+    return -1`
+};
+
+export const hashmapSnippets = {
+  put: `ALGORITHM PUT(Key, Value)
+    index = Hash(Key) % Capacity
+    node = Buckets[index]
+    
+    while node is not null
+        if node.key == Key
+            node.value = Value
+            return
+        node = node.next
+        
+    newNode = CreateNode(Key, Value)
+    newNode.next = Buckets[index]
+    Buckets[index] = newNode`,
+    
+  get: `ALGORITHM GET(Key)
+    index = Hash(Key) % Capacity
+    node = Buckets[index]
+    
+    while node is not null
+        if node.key == Key
+            return node.value
+        node = node.next
+        
+    return null`,
+    
+  remove: `ALGORITHM REMOVE(Key)
+    index = Hash(Key) % Capacity
+    node = Buckets[index]
+    prev = null
+    
+    while node is not null
+        if node.key == Key
+            if prev == null
+                Buckets[index] = node.next
+            else
+                prev.next = node.next
+            return true
+        prev = node
+        node = node.next
+        
+    return false`
 };

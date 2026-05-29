@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search } from 'lucide-react';
 
 export const categories = [
   {
@@ -11,10 +11,18 @@ export const categories = [
       {
         id: 'sorting',
         title: 'Sorting Algorithms',
-        description: 'Visualize Insertion, Selection, Merge, and Quick Sort as they organize randomized array data in real-time.',
+        description: 'Visualize Bubble, Insertion, Selection, Merge, and Quick Sort as they organize randomized array data in real-time.',
         icon: <BarChart2 size={32} className="sim-icon sorting-icon" style={{color: '#ff7f50'}} />,
         path: '/sorting',
         color: 'orange'
+      },
+      {
+        id: 'search',
+        title: 'Search Algorithms',
+        description: 'Visualize Linear Search and Binary Search to contrast O(N) vs O(log N) efficiency.',
+        icon: <Search size={32} className="sim-icon search-icon" style={{color: '#facc15'}} />,
+        path: '/search',
+        color: 'yellow'
       },
       {
         id: 'graph',
@@ -64,6 +72,14 @@ export const categories = [
         icon: <GitMerge size={32} className="sim-icon tree-icon" style={{color: '#cddc39'}} />,
         path: '/tree',
         color: 'yellow'
+      },
+      {
+        id: 'hashmap',
+        title: 'Hash Table',
+        description: 'Visualize Hash Functions, Buckets, Separate Chaining, and Open Addressing (Linear & Quadratic Probing).',
+        icon: <Hash size={32} className="sim-icon hashmap-icon" style={{color: '#c084fc'}} />,
+        path: '/hashmap',
+        color: 'purple'
       }
     ]
   },
