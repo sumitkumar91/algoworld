@@ -54,6 +54,14 @@ const simulations = [
     color: 'green'
   },
   {
+    id: 'stacks-queues',
+    title: 'Stacks & Queues',
+    description: 'Visualize Last-In-First-Out and First-In-First-Out data structures.',
+    icon: <Layers size={32} className="sim-icon list-icon" style={{color: '#c084fc'}} />,
+    path: '/stacks-queues',
+    color: 'purple'
+  },
+  {
     id: 'collatz',
     title: 'Collatz Conjecture',
     description: 'The "3n + 1" problem: Visualize the wild fluctuations of the hailstone sequence as it charts its path to 1.',

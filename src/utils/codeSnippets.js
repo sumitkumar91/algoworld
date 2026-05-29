@@ -319,3 +319,40 @@ ALGORITHM CSLL-DELETE(L, key)
     // Deleting non-head
     prev.next ← curr.next`
 };
+
+export const sqSnippets = {
+  stack: `ALGORITHM PUSH(S, x)
+    if S.top == S.length
+        error "overflow"
+    else
+        S.top ← S.top + 1
+        S[S.top] ← x
+
+ALGORITHM POP(S)
+    if S.top == 0
+        error "underflow"
+    else
+        S.top ← S.top - 1
+        return S[S.top + 1]`,
+        
+  queue: `ALGORITHM ENQUEUE(Q, x)
+    if Q.tail == Q.length
+        error "overflow"
+    else
+        Q[Q.tail] ← x
+        if Q.tail == Q.length
+            Q.tail ← 1
+        else
+            Q.tail ← Q.tail + 1
+
+ALGORITHM DEQUEUE(Q)
+    if Q.head == Q.tail
+        error "underflow"
+    else
+        x ← Q[Q.head]
+        if Q.head == Q.length
+            Q.head ← 1
+        else
+            Q.head ← Q.head + 1
+        return x`
+};

@@ -10,6 +10,7 @@ import CollatzConjecture from './pages/CollatzConjecture';
 import KaprekarRoutine from './pages/KaprekarRoutine';
 import GraphVisualizer from './pages/GraphVisualizer';
 import LinkedListVisualizer from './pages/LinkedListVisualizer';
+import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Route path="/kaprekar" element={<KaprekarRoutine />} />
               <Route path="/graph" element={<GraphVisualizer />} />
               <Route path="/linked-list" element={<LinkedListVisualizer />} />
+              <Route path="/stacks-queues" element={<StacksQueuesVisualizer />} />
             </Routes>
           </main>
         </div>
