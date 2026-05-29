@@ -1,7 +1,6 @@
-# AlgoWorld 🌌
+# AlgoVerse 🌌
 
-AlgoWorld is an interactive web-based simulation platform designed to help you visualize and understand classic algorithms, data structures, and mathematical puzzles. 
-
+AlgoVerse is an interactive web-based learning platform designed to help you visualize and understand classic algorithms, data structures, and mathematical puzzles through beautiful, step-by-step animations.
 
 ## 🚀 Live Demo
 *https://algoworld.vercel.app/*
@@ -10,51 +9,92 @@ AlgoWorld is an interactive web-based simulation platform designed to help you v
 
 ## 🎮 Features & Simulations
 
-### 1. Towers of Hanoi 🗼
-A mathematical puzzle where the objective is to move a stack of disks from one rod to another, following specific rules (you cannot place a larger disk onto a smaller disk).
-- Interactive drag-and-drop / click-to-move mechanics.
-- Dynamically adjustable disk counts (3-8 disks).
-- **Auto-Simulate** feature that visually plays out the optimal recursive solution step-by-step.
+### 🗂️ Data Structures
 
-### 2. Monty Hall Problem 🐐🚗
-A famous probability brain teaser based on a game show. Does swapping your choice increase your chances of winning?
-- Interactive 3D flipping doors.
-- Step-by-step gameplay phases (Pick -> Host Reveals -> Swap/Stay -> Result).
-- **Fast Auto-Simulate** engine to run the game 100 or 1,000 times instantly, proving the statistical probability converge (66% win rate for swapping vs 33% for staying).
+#### Linked List 🔗
+A visual walkthrough of dynamic memory allocation via a singly linked list.
+- **Insert at Head / Tail / Index**: Watch pointer reassignments animate in real-time.
+- **Delete**: See how nodes are surgically removed and adjacent pointers are rewired.
+- **Search**: Trace a sequential scan through the chain, node by node.
+- **Pseudocode modal** included for each operation.
 
-### 3. Sorting Algorithms 📊
-Visualize how fundamental sorting algorithms organize randomized array data in real-time.
-- **Supported Algorithms**: Insertion Sort, Selection Sort, Merge Sort, and Quick Sort.
-- Dynamic bar chart rendering that scales up to 200 elements.
+#### Array 📦
+Demonstrates the contiguous, fixed-capacity nature of arrays as opposed to dynamic structures.
+- A static grid of **10 memory slots** always visible, labeled 0–9 (0-based indexing).
+- **Insert**: Watch all elements to the right shift one position to make room (O(n) shift).
+- **Delete**: Watch elements shift left to patch the gap and maintain contiguity.
+- **Update**: Demonstrates true **O(1) random access** — instantly highlights the target index.
+- **Custom array input**: Pre-populate the visualizer with your own values.
+
+#### Stacks & Queues 📥
+Side-by-side live visualization of a Stack (LIFO) and a Queue (FIFO).
+- Push / Pop / Enqueue / Dequeue operations with animated transitions.
+- Real-time **LIFO vs FIFO** comparison.
+
+#### Binary Search Tree (BST) 🌳
+A custom-built SVG visualization engine for node operations in a BST.
+- **Insert**: Trace values down the tree to their correct BST position.
+- **Delete**: Visualize complex replacement logic (leaf, single-child, and two-child cases).
+- **Search**: Highlight the search path; neon green on success, red on failure.
+- **Traversals**: Animate In-Order, Pre-Order, and Post-Order traversals.
+
+#### Hash Table #️⃣
+A deep-dive into how hash tables work internally — not just the map API.
+- **Hash Computation Banner**: Watch the key get mathematically converted into a bucket index character-by-character in real-time.
+- **Configurable Capacity**: Set any bucket count from 1 to 32.
+- **Configurable Hash Functions**: Sum of ASCII, Integer Value, First Char, String Length, or a fully **custom JavaScript expression** using `k` (string) and `x` (integer) variables.
+- **Three Collision Resolution Strategies**:
+  - **Separate Chaining**: Collisions build horizontal linked-list chains out of the bucket.
+  - **Linear Probing**: `(H + i) % Cap` — probe the next slot sequentially.
+  - **Quadratic Probing**: `(H + i²) % Cap` — probe with exponentially increasing offsets.
+- **Tombstones**: Deletions in Open Addressing mode place a `DEL` tombstone to preserve probe chain integrity.
+- **Strategy-specific pseudocode** for every operation (Put, Get, Remove).
+
+---
+
+### ⚡ Algorithms
+
+#### Sorting Algorithms 📊
+Visualize how fundamental sorting algorithms organize randomized data.
+- **Supported**: Bubble Sort, Insertion Sort, Selection Sort, Merge Sort, Quick Sort.
+- Dynamic bar chart scaling up to 200 elements.
 - Real-time color coding: Default (Cyan), Comparing (Red), Sorted (Green).
-- Interactive sliders to control **Array Size** and **Animation Speed** on the fly.
-- **Race All Mode:** Watch all 4 algorithms compete against each other simultaneously in a 2x2 grid.
+- Interactive sliders for **Array Size** and **Animation Speed**.
+- **Race All Mode:** All 5 algorithms compete simultaneously in a 2×2 grid.
 
-### 4. Binary Search Tree (BST) 🌳
-A custom-built SVG visualization engine to watch node operations occur in a standard Binary Search Tree without structural overlap.
-- **Insert**: Watch values trace their path down the tree to their correct BST location.
-- **Delete**: Visualize complex node replacement logic when deleting nodes (including leaf, single-child, and two-child replacements).
-- **Search**: Trace the path to find a node, highlighting neon green on success or red on failure.
-- **Traversals**: Animate and track In-Order, Pre-Order, and Post-Order traversals.
-
-### 5. Interactive Graph Builder & Traversals 🕸️
-A powerful point-and-click engine to build custom networks and trace pathfinding algorithms.
-- **Builder Mode:** Click empty space to drop custom nodes. Click two nodes to draw an edge. The engine automatically assigns random weights to edges. (Users can also click an edge to manually overwrite the weight).
-- **Step-by-Step Playback:** Fully manual playback controls (Auto Play, Pause, Step Forward, Reset) to meticulously trace algorithm execution frames.
+#### Graph Traversals & Pathfinding 🕸️
+A powerful point-and-click graph builder with step-by-step algorithm playback.
+- **Builder Mode:** Drop nodes, draw edges, assign weights.
+- **Step-by-Step Playback:** Manual controls (Auto Play, Pause, Step Forward, Reset).
 - **Supported Algorithms:**
-  - **Breadth-First Search (BFS):** Utilizes a Queue (FIFO).
-  - **Depth-First Search (DFS):** Utilizes a Stack (LIFO) and tracks discovery/finish times.
-  - **Dijkstra's Shortest Path:** Utilizes a Min-Heap (Priority Queue) to relax edge weights and find the absolute shortest paths.
-  - **Kruskal's Algorithm:** Sorts edges and builds a Minimum Spanning Tree while checking a Disjoint Set for cycles.
-  - **Prim's Algorithm:** Greedily expands the Minimum Spanning Tree using a Priority Queue.
+  - **BFS** — Queue-based level-order traversal.
+  - **DFS** — Stack-based with discovery/finish time tracking.
+  - **Dijkstra's** — Min-Heap Priority Queue for shortest paths.
+  - **Kruskal's** — Minimum Spanning Tree via Union-Find.
+  - **Prim's** — Greedy MST expansion with a Priority Queue.
 
-### 6. Collatz Conjecture (3n + 1 Problem) 📈
-Visualize the chaotic mathematical "hailstone sequence" that always seems to crash into the 4-2-1 loop.
-- Input any positive integer.
-- Uses a custom native SVG renderer to draw a dynamic, scaling line chart tracing the massive mathematical fluctuations before resolving.
+#### Search Algorithms 🔍
+Visualize how search algorithms probe an array.
+- **Binary Search**: Watch the search window halve on every comparison.
+- **Linear Search**: Sequential scan from left to right.
 
-### 7. Kaprekar's Routine (6174 Mystery) 🔢
-A mathematical anomaly where taking any 4-digit number (with at least two distinct digits) and subtracting its sorted ascending digits from its descending digits will invariably lead to 6174.
-- Input a valid 4-digit number.
-- Visually breaks down the sequential arithmetic steps (`A - B = C`) until Kaprekar's Constant is reached.
+---
+
+### 🧩 Math Puzzles
+
+#### Towers of Hanoi 🗼
+- Adjustable disk counts (3–8).
+- **Auto-Simulate** plays out the optimal recursive solution step-by-step.
+
+#### Monty Hall Problem 🐐🚗
+- Interactive 3D flipping doors.
+- **Auto-Simulate** engine — run 100 or 1,000 trials and watch win-rate converge to the 66%/33% split.
+
+#### Collatz Conjecture 📈
+- Input any positive integer, visualize the hailstone sequence crashing into the 4-2-1 loop via a dynamic SVG line chart.
+
+#### Kaprekar's Routine 🔢
+- Input any 4-digit number, watch sequential subtraction steps converge to the constant **6174**.
+
+---
 
