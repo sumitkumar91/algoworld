@@ -142,3 +142,34 @@
 .sim-card:hover .launch-text {
   filter: brightness(1.2);
 }
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-bottom: 4rem;
+}
+
+.category-section {
+  width: 100%;
+}
+
+.category-header {
+  margin-bottom: 2rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.category-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.category-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}

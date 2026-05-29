@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
+import CategoryPage from './pages/CategoryPage';
 import TowersOfHanoi from './pages/TowersOfHanoi';
 import MontyHall from './pages/MontyHall';
 import SortingVisualizer from './pages/SortingVisualizer';
@@ -22,6 +23,7 @@ function App() {
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/category/:categoryId" element={<CategoryPage />} />
               <Route path="/hanoi" element={<TowersOfHanoi />} />
               <Route path="/monty-hall" element={<MontyHall />} />
               <Route path="/sorting" element={<SortingVisualizer />} />
