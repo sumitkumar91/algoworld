@@ -37,7 +37,7 @@
   overflow: hidden;
 }
 
-.svg-container {
+.sq-svg-container {
   flex: 1;
   width: 100%;
   display: flex;
@@ -117,4 +117,20 @@
   .sq-layout {
     grid-template-columns: 1fr;
   }
+}
+
+.sq-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.sq-input:focus {
+  border-color: var(--accent-cyan);
 }

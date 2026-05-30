@@ -7,6 +7,7 @@ import CodeModal from '../components/CodeModal';
 import LogicCanvas from '../components/LogicCanvas';
 import { logicSnippets } from '../utils/codeSnippets';
 import './LogicGatesVisualizer.css';
+import '../components/EducationalGuide.css';
 
 // Pre-defined SVGs for Gates
 const GatePaths = {
@@ -359,6 +360,38 @@ const LogicGatesVisualizer = () => {
           </Card>
         </div>
       )}
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Logic Gates & Circuits</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Core Concept: Transistors</h3>
+          <p>Logic gates aren't magic. Under the hood, they are just microscopic electronic switches called <strong>Transistors</strong>. By wiring a few transistors together, we can create basic "if/then" logic rules based purely on electricity flowing (1) or not flowing (0).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Basic Gates</h3>
+          <ul>
+            <li><strong>AND Gate:</strong> Only outputs electricity if BOTH inputs have electricity.</li>
+            <li><strong>OR Gate:</strong> Outputs electricity if AT LEAST ONE input has electricity.</li>
+            <li><strong>XOR Gate:</strong> Outputs electricity if the inputs are DIFFERENT. It strictly means "One or the other, but NOT both."</li>
+            <li><strong>NOT Gate:</strong> An inverter. It outputs electricity if the input is OFF, and shuts down if the input is ON.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Combinational Circuits</h3>
+          <p>By chaining these simple gates together, we can do complex math without writing any code:</p>
+          <ul>
+            <li><strong>Half Adder:</strong> Wires an XOR gate and an AND gate together. This allows the computer to add two binary digits and calculate a "Carry" bit, just like you do in grade school math when adding 9 + 5.</li>
+            <li><strong>Full Adder:</strong> Links two Half Adders together to factor in a Carry-In from a previous addition. String 32 of these together, and you have the Arithmetic Logic Unit (ALU) that sits inside a modern CPU!</li>
+            <li><strong>Multiplexer (MUX):</strong> A digital railroad switch. It uses a "Selector" pin to decide which input channel gets sent to the output. Useful for routing data across the motherboard.</li>
+          </ul>
+        </div>
+      </div>
       
       <CodeModal 
         isOpen={isCodeModalOpen} 

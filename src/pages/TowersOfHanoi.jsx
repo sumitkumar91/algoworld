@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './TowersOfHanoi.css';
+import '../components/EducationalGuide.css';
 
 const MAX_DISKS = 8;
 const MIN_DISKS = 3;
@@ -210,6 +211,34 @@ const TowersOfHanoi = () => {
               </Button>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Towers of Hanoi</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Power of Recursion</h3>
+          <p>Towers of Hanoi is the quintessential puzzle to teach <strong>Recursion</strong> (a function calling itself). To a human, moving 8 disks seems incredibly complex. But to a computer using recursion, the solution is practically 3 lines of code. It breaks the massive problem down into a smaller identical problem.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The 3-Step Recursive Trick</h3>
+          <p>To move <code>N</code> disks from Peg A to Peg C, you only need to do 3 things:</p>
+          <ol>
+            <li>Move <code>N-1</code> disks from Peg A to Peg B (the spare peg).</li>
+            <li>Move the 1 remaining largest disk from Peg A directly to Peg C.</li>
+            <li>Move the <code>N-1</code> disks from Peg B onto Peg C.</li>
+          </ol>
+          <p>That's it! The algorithm just calls itself to repeat those 3 steps over and over until <code>N = 1</code>.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Exponential Growth (O(2^N))</h3>
+          <p>The minimum number of moves required is exactly <code>2<sup>N</sup> - 1</code>. If monks in a temple were moving a tower of 64 golden disks at a rate of 1 disk per second, it would take them <strong>585 billion years</strong> to finish. That is the terrifying power of exponential time complexity.</p>
         </div>
       </div>
     </div>

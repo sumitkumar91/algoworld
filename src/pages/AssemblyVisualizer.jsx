@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { assemblySnippets } from '../utils/codeSnippets';
 import './AssemblyVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const DEFAULT_CODE = `; Multiply R1 by 2, five times
 MOV R0, 5
@@ -282,6 +283,35 @@ const AssemblyVisualizer = () => {
           </Card>
         </div>
 
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Assembly Language</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The CPU's Brain: Registers</h3>
+          <p>The CPU has its own microscopic memory chips called <strong>Registers</strong> (like R0, R1). They are the fastest memory in the entire computer. The CPU cannot do math on data sitting out in RAM; it MUST load it into a register first, do the math, and then store it back in RAM.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Program Counter (PC)</h3>
+          <p>The <strong>PC (Program Counter)</strong> is a special register. It just holds a single number: the line number of the next instruction to execute. When you write a loop in Python or Javascript, the CPU is literally just changing the PC so it jumps backward in the code.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Basic Instructions (ISA)</h3>
+          <p>An Instruction Set Architecture (ISA) is the list of commands a specific CPU understands. x86 (Intel/AMD) has thousands of complex commands. ARM (Apple M-series) has fewer, simpler commands. Here is our simplified ISA:</p>
+          <ul>
+            <li><strong>MOV R1, 5</strong> - Move the number 5 into Register 1.</li>
+            <li><strong>ADD R1, R2</strong> - Add R2 to R1, save the result in R1.</li>
+            <li><strong>LOAD R1, 10</strong> - Go to RAM address 10, grab the data, and put it in R1.</li>
+            <li><strong>STORE R1, 10</strong> - Take the data in R1 and overwrite RAM address 10.</li>
+            <li><strong>JNZ R0, 5</strong> - "Jump if Not Zero". If R0 is not zero, forcefully change the PC to line 5 (This is how loops work!).</li>
+          </ul>
+        </div>
       </div>
 
       <CodeModal 

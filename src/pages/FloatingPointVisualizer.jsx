@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { floatSnippets } from '../utils/codeSnippets';
 import './FloatingPointVisualizer.css';
+import '../components/EducationalGuide.css';
 
 // Helper to convert float to 32-bit binary string
 const getIEEE754 = (num) => {
@@ -236,6 +237,33 @@ const FloatingPointVisualizer = () => {
             </div>
 
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>IEEE-754 Floating Point</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Problem with Decimals</h3>
+          <p>Computers only understand 1s and 0s. Storing a clean integer like <code>5</code> is easy. But how do you store <code>3.14159</code>? You can't just put a decimal point in RAM. The IEEE-754 standard solves this by treating decimals like Scientific Notation (e.g., <code>1.23 x 10²</code>), but in binary!</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The 3 Blocks of Memory</h3>
+          <p>A standard 32-bit float rips a number into three separate chunks:</p>
+          <ul>
+            <li><strong>Sign (1 bit):</strong> The simplest part. <code>0</code> means positive, <code>1</code> means negative.</li>
+            <li><strong>Exponent (8 bits):</strong> Controls the scale of the number. It acts like the <code>x 10²</code> part of scientific notation, but using base-2. It has a "bias" of 127 so it can scale down to microscopic fractions or scale up to massive galaxies.</li>
+            <li><strong>Mantissa / Fraction (23 bits):</strong> The actual precision of the number. It stores the digits that come <em>after</em> the decimal point.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Why 0.1 + 0.2 = 0.30000000000000004</h3>
+          <p>Because there are only 23 bits of precision in the Mantissa, a computer physically cannot store certain numbers perfectly. Just like <code>1/3</code> is an infinite repeating decimal <code>0.333333...</code> in Base-10, the number <code>0.1</code> is an infinite repeating decimal in Base-2. The computer eventually has to cut it off to fit in 32 bits, resulting in tiny rounding errors.</p>
         </div>
       </div>
       

@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { heapSnippets } from '../utils/codeSnippets';
 import './HeapVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 900;
 const SVG_HEIGHT = 400;
@@ -379,6 +380,70 @@ const HeapVisualizer = () => {
               </div>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Binary Heap</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Core Concept: Priority</h3>
+          <p>A Heap is just a Binary Tree with two strict rules:</p>
+          <p>1. <strong>Shape Rule:</strong> It must be perfectly balanced. You fill it level by level, left to right, with absolutely no gaps.</p>
+          <p>2. <strong>Order Rule:</strong> In a Max-Heap, every parent must be larger than its children. In a Min-Heap, every parent must be smaller. This guarantees the absolute Max (or Min) value is <strong>always instantly available at the root</strong>.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Array Secret</h3>
+          <p>Because the Shape Rule guarantees no gaps, we don't actually need Pointers to build this tree. We can just pack the nodes into a flat Array!</p>
+          <p>To traverse the tree, the computer just does simple math on the array index (<code>i</code>):</p>
+          <ul>
+            <li>Left Child: <code>(2 * i) + 1</code></li>
+            <li>Right Child: <code>(2 * i) + 2</code></li>
+            <li>Parent: <code>(i - 1) / 2</code></li>
+          </ul>
+          <p>This makes Heaps incredibly memory-efficient because they don't waste any RAM storing memory addresses (pointers).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Bubble-Up & Sink-Down</h3>
+          <p>When you insert a number, you just slap it at the very end of the array. If it violates the Order Rule, it simply <strong>Bubbles Up</strong> (swaps with its parent) until it settles into the correct spot.</p>
+          <p>When you extract the top number, you replace the root with the very last number in the array, and let it <strong>Sink Down</strong> (swap with its largest/smallest child) until it settles.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Big-O</th>
+                  <th>Explanation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Find Max / Min</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>It's always sitting right at Array index 0. Instant.</td>
+                </tr>
+                <tr>
+                  <td>Insert</td>
+                  <td className="complexity-ologn">O(log N)</td>
+                  <td>You just append to the array and Bubble Up the height of the tree.</td>
+                </tr>
+                <tr>
+                  <td>Extract Max / Min</td>
+                  <td className="complexity-ologn">O(log N)</td>
+                  <td>You remove the root and let the replacement Sink Down the height of the tree.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

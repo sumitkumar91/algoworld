@@ -6,6 +6,7 @@ import { bstSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './BinaryTreeVisualizer.css';
+import '../components/EducationalGuide.css';
 import {
   TreeNode,
   cloneTree,
@@ -283,7 +284,7 @@ const BinaryTreeVisualizer = () => {
                 <strong>Traversal:</strong> [{traversalResult.join(', ')}]
               </div>
             )}
-            <div className="svg-container">
+            <div className="btv-svg-container">
               <svg 
                 viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} 
                 preserveAspectRatio="xMidYMid meet"
@@ -296,6 +297,63 @@ const BinaryTreeVisualizer = () => {
               )}
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Binary Search Tree</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Core Rule: Left is Less, Right is More</h3>
+          <p>A Binary Search Tree (BST) is just nodes linked together with a very strict rule:</p>
+          <p>Everything to the <strong>left</strong> of a node must be smaller. Everything to the <strong>right</strong> must be larger.</p>
+          <p>Because of this rule, searching is insanely fast. If you are looking for 10, and you are at 50, you know instantly to ignore the entire right half of the tree. Every step down cuts the remaining possibilities in half (<code>O(log N)</code>).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Worst Case: A Straight Line</h3>
+          <p>What happens if you insert numbers in order: 1, 2, 3, 4, 5?</p>
+          <p>The tree never branches left. It just forms a straight line down the right side. It degrades into a terribly slow Linked List (<code>O(N)</code>). Advanced trees like AVL and Red-Black fix this by auto-balancing themselves.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Traversals</h3>
+          <p>How do you print out a tree? Just click the <strong>"View BST Code"</strong> button. The recursive algorithms for In-Order, Pre-Order, and Post-Order are beautifully simple.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Average Case</th>
+                  <th>Worst Case (Unbalanced)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Search</td>
+                  <td className="complexity-ologn">O(log N)</td>
+                  <td className="complexity-on">O(N)</td>
+                </tr>
+                <tr>
+                  <td>Insert</td>
+                  <td className="complexity-ologn">O(log N)</td>
+                  <td className="complexity-on">O(N)</td>
+                </tr>
+                <tr>
+                  <td>Delete</td>
+                  <td className="complexity-ologn">O(log N)</td>
+                  <td className="complexity-on">O(N)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

@@ -7,6 +7,7 @@ import CodeModal from '../components/CodeModal';
 import { linkedListSnippets } from '../utils/codeSnippets';
 import { LLNode, calculateListPositions, generatePointers, getInsertFrames, getDeleteFrames, getSearchFrames } from '../utils/linkedList';
 import './LinkedListVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 800;
 const SVG_HEIGHT = 400;
@@ -209,7 +210,7 @@ const LinkedListVisualizer = () => {
             <div className="status-bar">
               {statusMessage}
             </div>
-            <div className="svg-container">
+            <div className="ll-svg-container">
               <svg 
                 viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} 
                 preserveAspectRatio="xMidYMid meet"
@@ -298,6 +299,78 @@ const LinkedListVisualizer = () => {
               )}
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Linked Lists</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Core Concept: Pointers</h3>
+          <p>Arrays force the OS to find a huge block of side-by-side memory. Linked Lists don't. When you create a Node, the OS grabs the first random piece of free RAM it finds.</p>
+          <p>To keep the list together, every node stores a <strong>Pointer</strong> (the exact memory address) to the next node. It's a giant scavenger hunt across your RAM.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>1. Singly Linked List (SLL)</h3>
+          <p>The simplest version. Every node points to the <strong>Next</strong> node. The last node points to Null.</p>
+          <p><strong>The Good:</strong> Inserting at the Head is instant (<code>O(1)</code>). No shifting elements like an Array.</p>
+          <p><strong>The Bad:</strong> You can only walk forward. To delete the Tail, you must walk the entire chain from the Head just to find the 2nd-to-last node (<code>O(N)</code>).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>2. Doubly Linked List (DLL)</h3>
+          <p>Nodes now store TWO pointers: <strong>Next</strong> and <strong>Prev</strong>.</p>
+          <p><strong>The Good:</strong> You can walk backwards! Deleting the Tail is now instant (<code>O(1)</code>) because you just step backwards once. Deleting a node you are holding is instant because it knows its own parent.</p>
+          <p><strong>The Bad:</strong> Requires more RAM to store the extra pointers.</p>
+          <p><strong>Real-World Use:</strong> Browser History (Back/Forward buttons) and Undo/Redo systems.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>3. Circular Linked List (CSLL)</h3>
+          <p>The Tail node doesn't point to Null. It points back to the Head, creating an <strong>infinite loop</strong>.</p>
+          <p><strong>The Good:</strong> You never hit a dead end. You can start anywhere and eventually visit every node.</p>
+          <p><strong>Real-World Use:</strong> OS Task Scheduling (giving CPU time to App 1, then App 2, then App 3, and looping back to App 1) and Multiplayer Turn Systems.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Big-O</th>
+                  <th>Explanation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Read / Access / Search</td>
+                  <td className="complexity-on">O(N)</td>
+                  <td>You must walk the chain node-by-node.</td>
+                </tr>
+                <tr>
+                  <td>Insert / Delete (Head)</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>Just rewire the first pointer. Instant.</td>
+                </tr>
+                <tr>
+                  <td>Delete (Tail)</td>
+                  <td><span className="complexity-on">O(N)</span> (SLL)<br/><span className="complexity-o1">O(1)</span> (DLL)</td>
+                  <td>In a normal SLL, you must walk the entire list to find the 2nd-to-last node. In a DLL, you just step backwards once.</td>
+                </tr>
+                <tr>
+                  <td>Delete a known Node</td>
+                  <td><span className="complexity-on">O(N)</span> (SLL)<br/><span className="complexity-o1">O(1)</span> (DLL)</td>
+                  <td>If you want to delete a node you are holding, a DLL lets you do it instantly because it has a <code>prev</code> pointer. An SLL forces you to search from the beginning to find its parent.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

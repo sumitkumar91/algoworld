@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { numberTheorySnippets } from '../utils/codeSnippets';
 import './SieveVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SieveVisualizer = () => {
   const [gridSize, setGridSize] = useState(100);
@@ -296,6 +297,35 @@ const SieveVisualizer = () => {
             </div>
           </div>
 
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Sieve of Eratosthenes</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Brute Force Problem</h3>
+          <p>If you want to find all prime numbers up to 100, the naive way is to check every single number and see if anything divides evenly into it. That is horribly slow <code>O(N * √N)</code>. Eratosthenes, an ancient Greek mathematician, realized you could do it much faster by <strong>crossing out the losers</strong> instead of checking the winners.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Algorithm</h3>
+          <p>Instead of doing complex division, we just do simple addition:</p>
+          <ol>
+            <li>Start at 2 (the first prime).</li>
+            <li>Count up by 2s (4, 6, 8, 10...) and cross them all out. They cannot be prime because they are divisible by 2.</li>
+            <li>Move to the next uncrossed number (3). It must be prime!</li>
+            <li>Count up by 3s (6, 9, 12, 15...) and cross them out.</li>
+            <li>Repeat.</li>
+          </ol>
+        </div>
+
+        <div className="edu-section">
+          <h3>The p² Optimization</h3>
+          <p>You don't actually have to check numbers all the way up to N. If you are looking for primes up to 100, you can completely stop once you reach 10 (because <code>10² = 100</code>). Any composite number above 10 would have already been crossed out by a smaller prime factor! Notice how the visualizer jumps straight to 100% completion the second it finishes checking the number 7 (since <code>11² &gt; 100</code>).</p>
         </div>
       </div>
       

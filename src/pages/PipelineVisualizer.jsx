@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { pipelineSnippets } from '../utils/codeSnippets';
 import './PipelineVisualizer.css';
+import '../components/EducationalGuide.css';
 
 // ---------------------------
 // DATA / SCENARIOS
@@ -304,6 +305,30 @@ const PipelineVisualizer = () => {
             </div>
           </Card>
 
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>CPU Instruction Pipeline</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Laundry Analogy</h3>
+          <p>Imagine doing 4 loads of laundry. If you wash, dry, fold, and put away Load 1 before even starting Load 2, it takes all day. But if you put Load 2 in the Washer as soon as Load 1 moves to the Dryer, you are <strong>pipelining</strong>. The CPU does the exact same thing. It splits instructions into 5 hardware stages: Fetch (IF), Decode (ID), Execute (EX), Memory (MEM), and Write-Back (WB). This allows 5 instructions to be processed at the exact same time.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Data Hazards & Stalling</h3>
+          <p>Pipelining only works perfectly if every instruction is independent. But what if Instruction 2 needs the math result from Instruction 1? Instruction 2 has to stop and wait (Stall) for Instruction 1 to finish writing its result. The CPU injects empty bubbles into the pipeline while it waits.</p>
+          <p><strong>The Fix (Data Forwarding):</strong> Instead of waiting for the calculation to be written completely back to RAM or Registers, the CPU uses a physical wire to shoot the calculation result directly from the Execute stage of Line 1 back into the Execute stage of Line 2.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Control Hazards (Branch Flushes)</h3>
+          <p>The CPU is blindly fast and assumes code runs linearly. So it happily loads lines 2, 3, and 4 into the pipeline while line 1 is executing. But what if line 1 is an <code>IF</code> statement that jumps to line 100? The CPU just wasted time loading lines 2, 3, and 4. It has to throw them in the trash (Flush) and start over at line 100.</p>
+          <p><strong>The Fix (Branch Prediction):</strong> Modern CPUs actually guess which way an <code>IF</code> statement will go based on past history, achieving over 95% accuracy and avoiding flushes almost entirely!</p>
         </div>
       </div>
       

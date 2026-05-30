@@ -6,6 +6,7 @@ import { sortingSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './SortingVisualizer.css';
+import '../components/EducationalGuide.css';
 import { 
   getMergeSortAnimations, 
   getQuickSortAnimations, 
@@ -288,6 +289,70 @@ const SortingVisualizer = () => {
           </Card>
         </div>
       </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Sorting Algorithms</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Slow Ones: O(N²)</h3>
+          <p>These algorithms are simple to write but terrible for large datasets because they use nested loops (comparing every item to every other item).</p>
+          <ul>
+            <li><strong>Bubble Sort:</strong> Slowly bubbles the largest numbers to the top by repeatedly swapping adjacent elements. It's notoriously slow.</li>
+            <li><strong>Selection Sort:</strong> Scans the whole array to find the smallest number, then locks it into the first slot. Repeats for the 2nd smallest, 3rd smallest, etc.</li>
+            <li><strong>Insertion Sort:</strong> Builds a sorted section on the left by picking up the next number and sliding it leftwards until it fits. Extremely fast for arrays that are <em>already mostly sorted</em>.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Fast Ones: O(N log N)</h3>
+          <p>These use <strong>Divide and Conquer</strong>. Instead of looping over everything, they cut the array in half, sort the halves, and stitch them back together.</p>
+          <ul>
+            <li><strong>Merge Sort:</strong> Cuts the array in half over and over until you have single elements, then merges them back together in order. Requires extra RAM to hold the temporary merged arrays.</li>
+            <li><strong>Quick Sort:</strong> Picks a "Pivot" number. Throws everything smaller to the left, and everything larger to the right. Then recursively repeats. The absolute fastest algorithm in practice.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Average Speed</th>
+                  <th>Memory (Space)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bubble / Selection</td>
+                  <td className="complexity-on2"><code>O(N²)</code></td>
+                  <td className="complexity-o1"><code>O(1)</code></td>
+                </tr>
+                <tr>
+                  <td>Insertion</td>
+                  <td className="complexity-on2"><code>O(N²)</code></td>
+                  <td className="complexity-o1"><code>O(1)</code></td>
+                </tr>
+                <tr>
+                  <td>Merge Sort</td>
+                  <td className="complexity-ologn"><code>O(N log N)</code></td>
+                  <td className="complexity-on"><code>O(N)</code> (needs RAM)</td>
+                </tr>
+                <tr>
+                  <td>Quick Sort</td>
+                  <td className="complexity-ologn"><code>O(N log N)</code></td>
+                  <td className="complexity-o1"><code>O(log N)</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
       <CodeModal 
         isOpen={isCodeModalOpen} 
         onClose={() => setIsCodeModalOpen(false)} 

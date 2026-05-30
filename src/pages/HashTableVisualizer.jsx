@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { hashtableSnippets } from '../utils/codeSnippets';
 import './HashTableVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 900;
 const DEFAULT_CAPACITY = 8;
@@ -601,6 +602,68 @@ const HashMapVisualizer = () => {
               </svg>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Hash Tables</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Magic of Hashing</h3>
+          <p>Arrays are fast only if you know the exact integer index. What if you want to look up <code>"apple"</code>? Searching an array slot-by-slot is too slow (<code>O(N)</code>).</p>
+          <p>A Hash Table uses a <strong>Hash Function</strong>. It takes <code>"apple"</code>, crunches the letters into a math formula, and instantly spits out a number. Boom. You just turned a string into an Array Index in <code>O(1)</code> time.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Collision Problem</h3>
+          <p>Your array is small, but there are infinite possible strings. Eventually, two different strings will spit out the exact same array index. This is mathematically unavoidable. It's called a <strong>Collision</strong>.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Handling Collisions</h3>
+          <p><strong>1. Separate Chaining:</strong> Don't store data directly in the slot. Store a Linked List instead. If two keys hit the same slot, just link them together.</p>
+          <p><strong>2. Linear Probing:</strong> If the slot is taken, just walk 1 step forward until you find an empty one. Fast, but creates huge clusters of taken slots.</p>
+          <p><strong>3. Quadratic Probing:</strong> Instead of walking 1 step, jump forward by squares (1², 2², 3²). This prevents clustering.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Average Case</th>
+                  <th>Worst Case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Search / Get</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td className="complexity-on">O(N) (If every key hashes to the same bucket)</td>
+                </tr>
+                <tr>
+                  <td>Insert / Put</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td className="complexity-on">O(N) (If array needs resizing)</td>
+                </tr>
+                <tr>
+                  <td>Delete / Remove</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td className="complexity-on">O(N)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="edu-callout edu-callout-info">
+          <h4>What is the Load Factor?</h4>
+          <p><code>(Items in Table) / (Array Capacity)</code>. If this goes above 0.75, your table is too crowded and collisions happen constantly. The Hash Table is forced to pause, double the array size, and mathematically re-hash every single item into the new array.</p>
         </div>
       </div>
       

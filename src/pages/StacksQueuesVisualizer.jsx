@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { sqSnippets } from '../utils/codeSnippets';
 import './StacksQueuesVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 800;
 const SVG_HEIGHT = 450;
@@ -380,7 +381,7 @@ const StacksQueuesVisualizer = () => {
             <div className="status-bar">
               {statusMessage}
             </div>
-            <div className="svg-container">
+            <div className="sq-svg-container">
               <svg 
                 viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} 
                 preserveAspectRatio="xMidYMid meet"
@@ -419,6 +420,70 @@ const StacksQueuesVisualizer = () => {
               </svg>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Stacks & Queues</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>Restricted Access</h3>
+          <p>Stacks and Queues are fundamentally just Arrays or Linked Lists, but with strict access limits.</p>
+          <p>Instead of reading or writing anywhere in memory, you are only permitted to add or remove elements at the very ends. This limitation guarantees that these operations are always fast.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>1. Stacks (LIFO)</h3>
+          <p>LIFO means <strong>Last-In, First-Out</strong>. Think of stacking plastic chairs after an event. You put the last chair on the top of the stack. When someone needs a chair later, they pull that exact same chair off the top first.</p>
+          <p><strong>The Good:</strong> Adding (Push) and removing (Pop) is instantaneous (<code>O(1)</code>) since you only interact with the top item.</p>
+          <p><strong>Real-World Use:</strong> The "Undo" button in text editors, and the function Call Stack in programming languages.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>2. Queues (FIFO)</h3>
+          <p>FIFO means <strong>First-In, First-Out</strong>. It's a standard waiting line. The first person to get in line is the first person to get served.</p>
+          <p><strong>The Good:</strong> Adding to the back (Enqueue) and removing from the front (Dequeue) are instantaneous (<code>O(1)</code>) if backed by a Linked List.</p>
+          <p><strong>Real-World Use:</strong> Printer job scheduling, Web Server request processing, and Breadth-First Search (BFS).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Big-O</th>
+                  <th>Explanation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Push / Enqueue</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>You are only adding to the exact end of the line. Instant.</td>
+                </tr>
+                <tr>
+                  <td>Pop / Dequeue</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>You are only removing from the exact end of the line. Instant.</td>
+                </tr>
+                <tr>
+                  <td>Peek (Front/Top)</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>Looking at the first item is instant.</td>
+                </tr>
+                <tr>
+                  <td>Search / Access</td>
+                  <td className="complexity-on">O(N)</td>
+                  <td>Forbidden! You must pop every item off to find what's at the bottom.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

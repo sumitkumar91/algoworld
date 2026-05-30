@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './CollatzConjecture.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 800;
 const SVG_HEIGHT = 400;
@@ -132,7 +133,7 @@ const CollatzConjecture = () => {
         <div className="collatz-main">
           <Card className="chart-card">
             {sequence.length > 0 ? (
-              <div className="svg-container">
+              <div className="collatz-svg-container">
                 <div className="y-axis-label">{maxValue}</div>
                 <div className="y-axis-label bottom">0</div>
                 <svg viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} className="collatz-svg">
@@ -180,6 +181,33 @@ const CollatzConjecture = () => {
               </div>
             </Card>
           )}
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Collatz Conjecture</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Impossible Math Problem</h3>
+          <p>The Collatz Conjecture (or "3n + 1" problem) is famously unsolved. The rules are so simple a 1st grader can do them, yet we cannot mathematically prove if every single number eventually reaches 1.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Rules</h3>
+          <ul>
+            <li>Take any positive integer <strong>n</strong>.</li>
+            <li>If it's even, cut it in half (<code>n / 2</code>).</li>
+            <li>If it's odd, multiply by 3 and add 1 (<code>3n + 1</code>).</li>
+            <li>Repeat.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Hailstone Sequence</h3>
+          <p>The numbers bounce up and down wildly like a hailstone trapped in a storm cloud before finally crashing down to 1. No matter what number you try (computers have checked up to 2<sup>68</sup>), they all seem to eventually get sucked into the <code>4 → 2 → 1</code> infinite loop. But "seems to" isn't a mathematical proof!</p>
         </div>
       </div>
     </div>

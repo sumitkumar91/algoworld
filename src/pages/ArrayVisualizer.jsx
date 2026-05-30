@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { arraySnippets } from '../utils/codeSnippets';
 import './ArrayVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 900;
 const SVG_HEIGHT = 400;
@@ -315,6 +316,68 @@ const ArrayVisualizer = () => {
               </svg>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>The Array Data Structure</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>What is Contiguous Memory?</h3>
+          <p>Arrays are just a single, unbroken block of physical RAM. If you need 5 slots, the OS finds 5 side-by-side memory addresses and locks them down.</p>
+          <p>Because they are side-by-side, the CPU never has to search. To find index <code>3</code>, it just takes the starting address and adds 3. That's why reading is mathematically instant.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Cost of Shifting</h3>
+          <p>Because memory slots are physical and side-by-side, you can't just "squeeze" a number into the middle of an array.</p>
+          <p>To insert a number at index 0, you have to manually copy and shift <strong>every single element</strong> one slot to the right. Insert a number at the front of a 1-million item array? You just forced the CPU to do 1 million operations.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Big-O</th>
+                  <th>Explanation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Read / Access</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>Math instantly calculates the exact memory address.</td>
+                </tr>
+                <tr>
+                  <td>Search (Unsorted)</td>
+                  <td className="complexity-on">O(N)</td>
+                  <td>You must check every slot until you find it.</td>
+                </tr>
+                <tr>
+                  <td>Insert / Delete (End)</td>
+                  <td className="complexity-o1">O(1)</td>
+                  <td>Just drop it in the last empty slot.</td>
+                </tr>
+                <tr>
+                  <td>Insert / Delete (Start)</td>
+                  <td className="complexity-on">O(N)</td>
+                  <td>Requires shifting every single element.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="edu-callout edu-callout-info">
+          <h4>When should I use an Array?</h4>
+          <p><strong>YES:</strong> When you need lightning-fast lookups by index, or when you are just reading data sequentially.</p>
+          <p><strong>NO:</strong> When you need to constantly insert or delete items at the beginning or middle of the list.</p>
         </div>
       </div>
       

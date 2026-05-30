@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { searchSnippets } from '../utils/codeSnippets';
 import './SearchVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const SVG_WIDTH = 900;
 const SVG_HEIGHT = 400;
@@ -240,7 +241,7 @@ const SearchVisualizer = () => {
       />
       <div className="search-header">
         <h1>Search Visualizer <Search size={36} className="inline-icon" /></h1>
-        <p className="subtitle">Visualize and contrast $O(N)$ vs $O(\\log N)$ search algorithms.</p>
+        <p className="subtitle">Visualize and contrast <code>O(N)</code> vs <code>O(log N)</code> search algorithms.</p>
       </div>
 
       <div className="search-layout">
@@ -366,6 +367,57 @@ const SearchVisualizer = () => {
               </svg>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Search Algorithms</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>Linear Search (The Brute Force)</h3>
+          <p>Linear search is the simplest way to find something. You just start at the beginning and check every single item until you find what you're looking for.</p>
+          <p><strong>The Good:</strong> It works on anything. The data doesn't need to be sorted. Just throw data at it and it works.</p>
+          <p><strong>The Bad:</strong> It's slow (<code>O(N)</code>). If you have a billion items, you might have to check a billion items.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Binary Search (The Smart Way)</h3>
+          <p>Binary Search is how humans naturally look up a word in a dictionary. You don't read page 1, page 2, page 3... You open it to the middle. If your word comes alphabetically later, you completely ignore the left side. Then you repeat.</p>
+          <p><strong>The Good:</strong> It is incredibly fast (<code>O(log N)</code>). You can search through a billion items in just 30 guesses because you throw away half the remaining data every single step.</p>
+          <p><strong>The Bad:</strong> It <strong>ONLY</strong> works if the data is perfectly sorted first.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Best Case</th>
+                  <th>Worst Case</th>
+                  <th>Requires Sorted Data?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Linear Search</td>
+                  <td className="complexity-o1"><code>O(1)</code> (First item)</td>
+                  <td className="complexity-on"><code>O(N)</code> (Last item)</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td>Binary Search</td>
+                  <td className="complexity-o1"><code>O(1)</code> (Middle item)</td>
+                  <td className="complexity-ologn"><code>O(log N)</code></td>
+                  <td><strong>Yes</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

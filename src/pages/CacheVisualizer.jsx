@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { cacheSnippets } from '../utils/codeSnippets';
 import './CacheVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const TOTAL_BLOCKS = 16;
 const BLOCK_SIZE = 4;
@@ -251,6 +252,28 @@ const CacheVisualizer = () => {
             </div>
           </Card>
 
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Memory & Caching</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Memory Bottleneck</h3>
+          <p>Modern CPUs can do billions of calculations a second, but RAM is physically far away on the motherboard and very slow. If the CPU had to wait for RAM every time it wanted data, it would spend 99% of its life waiting. <strong>Caches</strong> are tiny, incredibly fast memory chips built directly onto the CPU to hold data it thinks it will need soon.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Spatial Locality (The "Chunk" Rule)</h3>
+          <p>When you ask for Address 5, the CPU doesn't just grab Address 5. It grabs the entire "Block" (e.g., Addresses 4, 5, 6, 7) and brings it all into the Cache. Why? Because if you just read a piece of data, there is a very high chance you are going to read the data right next to it in a millisecond (like looping through an array).</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>LRU Eviction (The Bouncer)</h3>
+          <p>Because the Cache is so small (L1 cache is usually only a few Kilobytes), it gets full quickly. When a new Block of data needs to come in, someone has to get kicked out to make room. The most common rule is <strong>LRU (Least Recently Used)</strong>. The CPU tracks exactly when each cache line was last touched, and evicts the one that has been ignored the longest.</p>
         </div>
       </div>
       

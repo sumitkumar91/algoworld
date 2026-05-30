@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './KaprekarRoutine.css';
+import '../components/EducationalGuide.css';
 
 const KaprekarRoutine = () => {
   const [inputValue, setInputValue] = useState('3524');
@@ -178,6 +179,35 @@ const KaprekarRoutine = () => {
               </div>
             )}
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Kaprekar's Routine</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Magic Number: 6174</h3>
+          <p>Discovered by Indian mathematician D.R. Kaprekar in 1949, <strong>6174</strong> is a mathematical black hole. If you take almost any 4-digit number and apply a simple sorting algorithm to it, it will inevitably get sucked into 6174. Once it hits 6174, it gets stuck there forever.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Algorithm</h3>
+          <p>The rules are incredibly simple:</p>
+          <ol>
+            <li>Take any 4-digit number (e.g., <code>3524</code>). At least two digits must be different (so <code>1111</code> won't work).</li>
+            <li>Sort the digits in descending order to get the largest possible number (<code>5432</code>).</li>
+            <li>Sort the digits in ascending order to get the smallest possible number (<code>2345</code>).</li>
+            <li>Subtract the smaller number from the larger number (<code>5432 - 2345 = 3087</code>).</li>
+            <li>Repeat the process with the new number.</li>
+          </ol>
+        </div>
+
+        <div className="edu-section">
+          <h3>Why does this happen?</h3>
+          <p>It's a quirk of base-10 mathematics. No matter what valid 4-digit number you start with, you are mathematically guaranteed to hit 6174 in <strong>at most 7 steps</strong>. And once you reach 6174, the math becomes <code>7641 - 1467 = 6174</code>, trapping it in an infinite loop.</p>
         </div>
       </div>
     </div>

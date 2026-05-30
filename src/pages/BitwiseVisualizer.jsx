@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import CodeModal from '../components/CodeModal';
 import { bitwiseSnippets } from '../utils/codeSnippets';
 import './BitwiseVisualizer.css';
+import '../components/EducationalGuide.css';
 
 const ANIMATION_SPEED = 400; // ms
 
@@ -290,6 +291,38 @@ const BitwiseVisualizer = () => {
               Showing {bitWidth}-bit representation {requires16Bit ? '(expanded)' : ''}
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Bit Manipulation</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Core Concept: Binary Math</h3>
+          <p>Computers store all numbers as binary (1s and 0s). Bitwise operations perform math on these individual 1s and 0s directly, rather than treating them as whole decimal numbers. Because this is exactly how the hardware natively works, it is the fastest possible math a CPU can do.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Basic Gates</h3>
+          <ul>
+            <li><strong>AND (&amp;):</strong> Both bits must be 1 to get a 1. Useful for "masking" out bits you want to ignore.</li>
+            <li><strong>OR (|):</strong> Only one bit needs to be 1 to get a 1. Useful for turning specific bits ON.</li>
+            <li><strong>XOR (^):</strong> Bits must be DIFFERENT to get a 1. Useful for toggling bits (flipping them back and forth).</li>
+            <li><strong>NOT (~):</strong> Flips every single bit (1s become 0s, 0s become 1s).</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Famous Bit Tricks</h3>
+          <p>Because bit manipulation is so fast, senior developers use "bit tricks" to do math instantly:</p>
+          <ul>
+            <li><strong>Check Even/Odd (<code>n &amp; 1</code>):</strong> Look at the very last bit. If it's a 1, the number is odd. If it's a 0, the number is even. Way faster than using Modulo (<code>n % 2</code>).</li>
+            <li><strong>Multiply/Divide by 2 (Shifting):</strong> A Left Shift (<code>n &lt;&lt; 1</code>) shifts all bits left, which instantly multiplies the number by 2. A Right Shift (<code>n &gt;&gt; 1</code>) instantly divides by 2.</li>
+            <li><strong>Check Power of 2 (<code>n &amp; (n-1)</code>):</strong> If a number is a perfect power of 2 (2, 4, 8, 16...), it only has a single 1 bit. This trick erases that bit. If the result is 0, it was a power of 2!</li>
+          </ul>
         </div>
       </div>
       

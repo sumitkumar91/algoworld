@@ -6,6 +6,7 @@ import { graphSnippets } from '../utils/codeSnippets';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './GraphVisualizer.css';
+import '../components/EducationalGuide.css';
 import { initialGraph, getBfsFrames, getDfsFrames, getKruskalFrames, getPrimFrames, getDijkstraFrames } from '../utils/graphAlgorithms';
 
 const SVG_WIDTH = 650;
@@ -379,7 +380,7 @@ const GraphVisualizer = () => {
         {/* Right Column: Graph View */}
         <div className="graph-right-col">
           <Card className="graph-card">
-            <div className="svg-container">
+            <div className="graph-svg-container">
               <svg 
                 ref={svgRef}
                 viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} 
@@ -470,6 +471,74 @@ const GraphVisualizer = () => {
               </svg>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Graph Algorithms</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Searchers: BFS & DFS</h3>
+          <p>How do you explore a maze?</p>
+          <ul>
+            <li><strong>Breadth-First Search (BFS):</strong> Explores layer by layer like a radar pulse. It uses a Queue. It is guaranteed to find the shortest path in an unweighted graph (like finding the fewest number of flights between two cities).</li>
+            <li><strong>Depth-First Search (DFS):</strong> Plunges as deep as possible down one path until it hits a dead end, then backtracks. It uses a Stack. Great for solving mazes and topological sorting.</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Shortest Path: Dijkstra</h3>
+          <p>If edges have weights (like miles or traffic delay), BFS fails because a 1-hop path could be 100 miles, while a 3-hop path could be 5 miles.</p>
+          <p><strong>Dijkstra's Algorithm</strong> solves this. It uses a Priority Queue (Min-Heap) to always greedily explore the shortest known path first. This is exactly how GPS navigation software routes you home.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>Minimum Spanning Trees: Prim & Kruskal</h3>
+          <p>Imagine you have 10 cities and want to lay down fiber optic cable to connect them all. You want to use the absolute minimum amount of cable possible.</p>
+          <ul>
+            <li><strong>Prim's Algorithm:</strong> Starts at one city and greedily grows outwards, always picking the cheapest edge that connects a new city to the growing network.</li>
+            <li><strong>Kruskal's Algorithm:</strong> Just sorts all cables by price, and greedily buys the cheapest ones first, as long as they don't create a useless loop (cycle).</li>
+          </ul>
+        </div>
+
+        <div className="edu-section">
+          <h3>Time Complexity</h3>
+          <div className="edu-table-container">
+            <table className="edu-table">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Big-O (V=Vertices, E=Edges)</th>
+                  <th>Core Data Structure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BFS / DFS</td>
+                  <td className="complexity-on"><code>O(V + E)</code></td>
+                  <td>Queue / Stack</td>
+                </tr>
+                <tr>
+                  <td>Dijkstra's Shortest Path</td>
+                  <td className="complexity-ologn"><code>O((V + E) log V)</code></td>
+                  <td>Priority Queue (Min-Heap)</td>
+                </tr>
+                <tr>
+                  <td>Prim's MST</td>
+                  <td className="complexity-ologn"><code>O((V + E) log V)</code></td>
+                  <td>Priority Queue (Min-Heap)</td>
+                </tr>
+                <tr>
+                  <td>Kruskal's MST</td>
+                  <td className="complexity-ologn"><code>O(E log E)</code></td>
+                  <td>Disjoint Set (Union-Find)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       

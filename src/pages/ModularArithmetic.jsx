@@ -174,15 +174,16 @@ const ModularArithmetic = () => {
         <div className="visual-panel">
           <h3 className="visual-title">Clock Face (Mod {N})</h3>
           
-          <div className="svg-container">
-            <svg className="clock-svg" viewBox="0 0 400 400">
-              {/* Base Circle */}
-              <circle cx={cx} cy={cy} r={r} className="clock-circle" />
+          <div className="modular-clock-card">
+            <div className="modular-svg-container">
+              <svg className="clock-svg" viewBox="0 0 400 400">
+                {/* Base Circle */}
+                <circle cx={cx} cy={cy} r={r} className="clock-circle" />
 
-              {/* Path */}
-              {pathD && <path d={pathD} className="path-line" key={pathD} />}
+                {/* Path */}
+                {pathD && <path d={pathD} className="path-line" key={pathD} />}
 
-              {/* Nodes */}
+                {/* Nodes */}
               {nodes.map(node => {
                 const isStart = node.id === startNode && op !== '*'; // Don't highlight 0 as start for multiply
                 const isEnd = node.id === endNode;
@@ -232,7 +233,9 @@ const ModularArithmetic = () => {
                 );
               })}
             </svg>
+            </div>
           </div>
+
 
           <div className="math-result">
             {resultStr}

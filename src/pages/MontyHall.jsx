@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import './MontyHall.css';
+import '../components/EducationalGuide.css';
 
 const generateDoors = () => {
   const carIndex = Math.floor(Math.random() * 3);
@@ -220,6 +221,28 @@ const MontyHall = () => {
               </Button>
             </div>
           </Card>
+        </div>
+      </div>
+
+      {/* EDUCATIONAL GUIDE */}
+      <div className="edu-guide-container">
+        <div className="edu-guide-header">
+          <h2>Monty Hall Problem</h2>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Setup</h3>
+          <p>You are on a game show. There are 3 doors. Behind one door is a new car; behind the other two are goats. You pick a door. The host, who knows what's behind the doors, opens a different door to reveal a goat. He then offers you a choice: stay with your original door, or swap to the remaining closed door.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Intuition Trap</h3>
+          <p>When the host opens a door with a goat, there are 2 doors left. Human intuition screams that it's a 50/50 coin toss, so swapping shouldn't matter. But human intuition is wrong. Swapping actually <strong>doubles</strong> your chances of winning from 33% to 66%.</p>
+        </div>
+
+        <div className="edu-section">
+          <h3>The Straightforward Explanation</h3>
+          <p>When you make your first pick, there is a 66% chance you picked a goat. If you picked a goat, the host is FORCED to open the other goat door. Therefore, 66% of the time, the remaining closed door is guaranteed to be the car. By swapping, you are betting that your original pick was wrong.</p>
         </div>
       </div>
     </div>
