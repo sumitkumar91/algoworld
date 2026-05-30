@@ -1,0 +1,218 @@
+.modular-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.modular-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.modular-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .modular-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Lesson Panel (Left) */
+.lesson-panel {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lesson-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.lesson-section.active {
+  border-color: #00e5ff;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+  background: rgba(0, 229, 255, 0.02);
+}
+
+.lesson-title {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lesson-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-text strong {
+  color: var(--text-primary);
+}
+
+.lesson-interactive {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+}
+
+.inline-input {
+  width: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+  color: #00e5ff;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.inline-input:focus {
+  outline: none;
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.inline-input.mod-input {
+  color: #ff4081;
+}
+.inline-input.mod-input:focus {
+  border-color: #ff4081;
+  background: rgba(255, 64, 129, 0.1);
+}
+
+/* Visualization Panel (Right) */
+.visual-panel {
+  position: sticky;
+  top: 2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 500px;
+}
+
+.visual-title {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.svg-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.clock-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.clock-circle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 2;
+}
+
+.clock-node {
+  fill: var(--bg-secondary);
+  stroke: var(--border-glass);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.clock-node.active-start {
+  fill: #00e5ff;
+  stroke: #00e5ff;
+  box-shadow: 0 0 10px #00e5ff;
+}
+
+.clock-node.active-end {
+  fill: #ff4081;
+  stroke: #ff4081;
+}
+
+.clock-node.path-node {
+  fill: #b388ff;
+  stroke: #b388ff;
+}
+
+.clock-text {
+  fill: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: none;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.clock-text.active-start, .clock-text.active-end, .clock-text.path-node {
+  fill: #fff;
+}
+
+.path-line {
+  fill: none;
+  stroke: #b388ff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.6;
+  animation: drawPath 1s ease-in-out forwards;
+}
+
+@keyframes drawPath {
+  from { stroke-dasharray: 0, 1000; }
+  to { stroke-dasharray: 1000, 1000; }
+}
+
+.math-result {
+  margin-top: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  text-align: center;
+}
+
+.math-result span.highlight-start { color: #00e5ff; }
+.math-result span.highlight-mod { color: #ff4081; }
+.math-result span.highlight-end { color: #b388ff; }

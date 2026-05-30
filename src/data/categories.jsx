@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code, Database } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code, Database, Clock } from 'lucide-react';
 
 export const categories = [
   {
@@ -145,6 +145,31 @@ export const categories = [
         icon: <Layers size={32} className="sim-icon" style={{color: '#ff1744'}} />,
         path: '/pipeline',
         color: 'red'
+      }
+    ]
+  },
+  {
+    id: 'number-theory',
+    title: 'Number Theory',
+    description: 'Fascinating visual explorations of primes, divisibility, and modular arithmetic.',
+    color: 'green',
+    icon: <Hash size={32} className="sim-icon" style={{color: '#00e676'}} />,
+    modules: [
+      {
+        id: 'sieve',
+        title: 'Sieve of Eratosthenes',
+        description: 'Watch this ancient algorithm elegantly hunt down prime numbers by crossing out multiples across a massive grid.',
+        icon: <Hash size={32} className="sim-icon" style={{color: '#00e676'}} />,
+        path: '/sieve',
+        color: 'green'
+      },
+      {
+        id: 'modular',
+        title: 'Modular Arithmetic',
+        description: 'An interactive lesson on Clock Math. Learn how remainder logic forms the foundation of modern cryptography.',
+        icon: <Clock size={32} className="sim-icon" style={{color: '#ff4081'}} />,
+        path: '/modular',
+        color: 'pink'
       }
     ]
   },

@@ -22,6 +22,8 @@ import FloatingPointVisualizer from './pages/FloatingPointVisualizer';
 import AssemblyVisualizer from './pages/AssemblyVisualizer';
 import CacheVisualizer from './pages/CacheVisualizer';
 import PipelineVisualizer from './pages/PipelineVisualizer';
+import SieveVisualizer from './pages/SieveVisualizer';
+import ModularArithmetic from './pages/ModularArithmetic';
 import './App.css';
 
 function App() {
@@ -53,6 +55,8 @@ function App() {
               <Route path="/assembly" element={<AssemblyVisualizer />} />
               <Route path="/caching" element={<CacheVisualizer />} />
               <Route path="/pipeline" element={<PipelineVisualizer />} />
+              <Route path="/sieve" element={<SieveVisualizer />} />
+              <Route path="/modular" element={<ModularArithmetic />} />
             </Routes>
           </main>
         </div>

@@ -970,3 +970,41 @@ export const pipelineSnippets = {
 // When the Jump executes, it realizes it grabbed the wrong instructions, 
 // so it flushes (deletes) them from the pipeline.`
 };
+
+export const numberTheorySnippets = {
+  SIEVE:
+`/**
+ * Sieve of Eratosthenes
+ * Finds all prime numbers up to N efficiently.
+ * 
+ * Time Complexity: O(N log log N)
+ * Space Complexity: O(N)
+ */
+function sieveOfEratosthenes(n) {
+  // Create a boolean array initialized to true
+  const isPrime = new Array(n + 1).fill(true);
+  isPrime[0] = false;
+  isPrime[1] = false;
+  
+  const primes = [];
+  
+  // Optimization 1: We only need to check up to sqrt(N)
+  for (let p = 2; p * p <= n; p++) {
+    
+    if (isPrime[p]) {
+      // Optimization 2: Start marking multiples at p^2
+      // (Smaller multiples like p*2, p*3 were already marked by 2 and 3)
+      for (let i = p * p; i <= n; i += p) {
+        isPrime[i] = false;
+      }
+    }
+  }
+  
+  // Collect all numbers that are still true
+  for (let i = 2; i <= n; i++) {
+    if (isPrime[i]) primes.push(i);
+  }
+  
+  return primes;
+}`
+};
