@@ -16,6 +16,8 @@ import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
 import ArrayVisualizer from './pages/ArrayVisualizer';
 import HashTableVisualizer from './pages/HashTableVisualizer';
 import HeapVisualizer from './pages/HeapVisualizer';
+import BitwiseVisualizer from './pages/BitwiseVisualizer';
+import LogicGatesVisualizer from './pages/LogicGatesVisualizer';
 import './App.css';
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
               <Route path="/array" element={<ArrayVisualizer />} />
               <Route path="/hashmap" element={<HashTableVisualizer />} />
               <Route path="/heap" element={<HeapVisualizer />} />
+              <Route path="/bitwise" element={<BitwiseVisualizer />} />
+              <Route path="/logic-gates" element={<LogicGatesVisualizer />} />
             </Routes>
           </main>
         </div>

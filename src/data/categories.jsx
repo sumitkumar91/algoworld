@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu } from 'lucide-react';
 
 export const categories = [
   {
@@ -88,6 +88,31 @@ export const categories = [
         icon: <Layers size={32} className="sim-icon heap-icon" style={{color: '#f97316'}} />,
         path: '/heap',
         color: 'orange'
+      }
+    ]
+  },
+  {
+    id: 'architecture',
+    title: 'Computer Architecture',
+    description: 'Visualizations focused on low-level computing, memory, and hardware principles.',
+    color: 'cyan',
+    icon: <Cpu size={32} className="sim-icon" style={{color: '#00e5ff'}} />,
+    modules: [
+      {
+        id: 'bitwise',
+        title: 'Bit Manipulation',
+        description: 'Visualize Bitwise AND, OR, XOR, Shifts, and famous bit manipulation hacks column-by-column.',
+        icon: <Cpu size={32} className="sim-icon bitwise-icon" style={{color: '#00e5ff'}} />,
+        path: '/bitwise',
+        color: 'cyan'
+      },
+      {
+        id: 'logic-gates',
+        title: 'Logic Gates',
+        description: 'Interactive Combinational Circuits! Toggle inputs to visualize current flowing through Basic Gates, Half Adders, Full Adders, and Multiplexers.',
+        icon: <GitMerge size={32} className="sim-icon" style={{color: '#cddc39'}} />,
+        path: '/logic-gates',
+        color: 'yellow'
       }
     ]
   },

@@ -1,0 +1,172 @@
+.logic-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.logic-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.logic-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .logic-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logic-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.logic-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.logic-input:focus {
+  outline: none;
+  border-color: #00e5ff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.logic-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logic-card {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at center, rgba(0, 229, 255, 0.03) 0%, transparent 80%);
+}
+
+.logic-status-bar {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-glass);
+  text-align: center;
+  font-weight: 500;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+/* Visualization Grid */
+.logic-circuit-container {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  overflow-x: auto;
+  min-height: 500px;
+}
+
+.logic-svg {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  overflow: visible;
+}
+
+/* Wires */
+.logic-wire {
+  fill: none;
+  stroke: var(--border-glass);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  transition: all 0.3s ease;
+}
+
+.logic-wire.state-1 {
+  stroke: #00e5ff;
+  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.6));
+}
+
+.logic-wire.state-0 {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+/* Gates */
+.logic-gate {
+  fill: rgba(0, 0, 0, 0.5);
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.logic-gate.active {
+  stroke: #00e5ff;
+  fill: rgba(0, 229, 255, 0.05);
+}
+
+.logic-gate-text {
+  fill: var(--text-primary);
+  font-size: 16px;
+  font-family: var(--font-header);
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Nodes */
+.logic-node {
+  fill: var(--bg-primary);
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logic-node:hover {
+  transform: scale(1.2);
+  stroke: #00e5ff;
+}
+
+.logic-node.state-1 {
+  fill: #00e5ff;
+  stroke: #00e5ff;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8));
+}
+
+.logic-node.state-0 {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.4);
+}
+
+.logic-node-label {
+  fill: var(--text-secondary);
+  font-size: 18px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.logic-node-label.state-1 {
+  fill: #00e5ff;
+}
+
+/* Labels */
+.logic-label {
+  fill: var(--text-tertiary);
+  font-size: 14px;
+}

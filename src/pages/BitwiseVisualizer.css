@@ -1,0 +1,169 @@
+.bitwise-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.bitwise-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.bitwise-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .bitwise-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bitwise-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.bitwise-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.bitwise-input:focus {
+  outline: none;
+  border-color: #00e5ff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bitwise-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bitwise-card {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at center, rgba(0, 229, 255, 0.03) 0%, transparent 80%);
+}
+
+.bitwise-status-bar {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-glass);
+  text-align: center;
+  font-weight: 500;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+/* Visualization Grid */
+.bitwise-grid-container {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  overflow-x: auto;
+}
+
+.bitwise-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.bitwise-operand-label {
+  width: 40px;
+  text-align: right;
+  font-weight: bold;
+  color: var(--text-tertiary);
+  font-size: 1.2rem;
+}
+
+.bitwise-bits-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bitwise-bit {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.bitwise-bit.is-one {
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.05);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.bitwise-bit.is-zero {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Animation States */
+.bitwise-bit.state-computing {
+  transform: scale(1.1);
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+  z-index: 10;
+}
+
+.bitwise-bit.state-result {
+  transform: scale(1.1);
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+  z-index: 10;
+}
+
+/* Operation Line */
+.bitwise-divider {
+  width: 100%;
+  max-width: 800px;
+  height: 2px;
+  background: var(--border-glass);
+  position: relative;
+  margin: 1rem 0;
+}
+
+.bitwise-decimal-value {
+  width: 60px;
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.bitwise-decimal-value.result {
+  color: #00e5ff;
+  font-weight: bold;
+}

@@ -706,3 +706,161 @@ ALGORITHM EXTRACT_MAX()
     return max`,
   },
 };
+
+export const bitwiseSnippets = {
+  basics:
+`// BITWISE OPERATIONS BASICS
+// Bitwise operators treat their operands as a sequence of 32 bits (zeros and ones).
+// AND (&)  : Returns 1 if both bits are 1.
+// OR  (|)  : Returns 1 if either bit is 1.
+// XOR (^)  : Returns 1 if the bits are different.
+// NOT (~)  : Inverts the bits (0 becomes 1, 1 becomes 0).
+// L-Shift (<<) : Shifts bits to the left, filling with 0s on the right.
+// R-Shift (>>) : Shifts bits to the right, preserving the sign bit on the left.
+// Unsigned R-Shift (>>>) : Shifts right, filling with 0s on the left.`,
+
+  evenOdd:
+`// TRICK: CHECK EVEN / ODD
+// A binary number is odd if and only if its lowest bit (the 1s column) is a 1.
+// By performing a bitwise AND with 1 (which is ...00000001 in binary), 
+// we mask out all other bits except the lowest one.
+
+bool isOdd(n) {
+    return (n & 1) == 1
+}
+
+bool isEven(n) {
+    return (n & 1) == 0
+}`,
+
+  powerOf2:
+`// TRICK: CHECK IF POWER OF 2
+// A power of 2 (e.g. 2, 4, 8, 16) always has EXACTLY ONE bit set to 1.
+// Examples: 4 is 0100, 8 is 1000.
+// If you subtract 1 from a power of 2, all bits after the 1 become 1s, 
+// and the 1 becomes a 0. (e.g., 8-1 = 7, which is 0111).
+// Therefore, (n & (n - 1)) will always be 0 for powers of 2!
+
+bool isPowerOfTwo(n) {
+    // Note: n must be > 0. If n=0, n & (n-1) is 0 but it's not a power of 2.
+    return n > 0 && (n & (n - 1)) == 0
+}`,
+
+  clearLowest:
+`// TRICK: CLEAR LOWEST SET BIT
+// Want to turn off the lowest '1' in a binary number?
+// Subtracting 1 flips all bits up to and including the lowest set bit.
+// Bitwise ANDing n with (n-1) will therefore clear exactly that bit!
+// Example: n = 12 (1100). n-1 = 11 (1011). 
+// 1100 & 1011 = 1000 (8). The lowest '1' was erased.
+
+int clearLowestSetBit(n) {
+    return n & (n - 1)
+}`,
+
+  getLowest:
+`// TRICK: GET LOWEST SET BIT (Isolate the lowest '1')
+// Useful in algorithms like Fenwick Trees (Binary Indexed Trees).
+// In Two's Complement arithmetic, -n is mathematically equivalent to (~n + 1).
+// This operation flips all bits of n, then adds 1, which ripples through 
+// and restores exactly the lowest set bit to its original position!
+// Therefore, (n & -n) extracts ONLY the lowest set bit.
+
+int getLowestSetBit(n) {
+    return n & -n
+}`
+};
+
+export const logicSnippets = {
+  AND:
+`// AND GATE
+// Outputs 1 ONLY if BOTH inputs are 1.
+// 
+// Truth Table:
+// A | B | Out
+// --+---+----
+// 0 | 0 |  0
+// 0 | 1 |  0
+// 1 | 0 |  0
+// 1 | 1 |  1`,
+
+  OR:
+`// OR GATE
+// Outputs 1 if AT LEAST ONE input is 1.
+// 
+// Truth Table:
+// A | B | Out
+// --+---+----
+// 0 | 0 |  0
+// 0 | 1 |  1
+// 1 | 0 |  1
+// 1 | 1 |  1`,
+
+  XOR:
+`// XOR GATE (Exclusive OR)
+// Outputs 1 if inputs are DIFFERENT.
+// 
+// Truth Table:
+// A | B | Out
+// --+---+----
+// 0 | 0 |  0
+// 0 | 1 |  1
+// 1 | 0 |  1
+// 1 | 1 |  0`,
+
+  NOT:
+`// NOT GATE (Inverter)
+// Outputs the OPPOSITE of the input.
+// 
+// Truth Table:
+// A | Out
+// --+----
+// 0 |  1
+// 1 |  0`,
+
+  HALF_ADDER:
+`// HALF ADDER
+// Adds two single binary digits (A, B).
+// Sum = A XOR B
+// Carry = A AND B
+// 
+// Truth Table:
+// A | B | Sum | Carry
+// --+---+-----+------
+// 0 | 0 |  0  |   0
+// 0 | 1 |  1  |   0
+// 1 | 0 |  1  |   0
+// 1 | 1 |  0  |   1`,
+
+  FULL_ADDER:
+`// FULL ADDER
+// Adds two bits (A, B) AND a Carry-In (Cin).
+// Made by chaining two Half Adders and an OR gate.
+// 
+// Truth Table:
+// A | B | Cin | Sum | Cout
+// --+---+-----+-----+-----
+// 0 | 0 |  0  |  0  |  0
+// 0 | 0 |  1  |  1  |  0
+// 0 | 1 |  0  |  1  |  0
+// 0 | 1 |  1  |  0  |  1
+// 1 | 0 |  0  |  1  |  0
+// 1 | 0 |  1  |  0  |  1
+// 1 | 1 |  0  |  0  |  1
+// 1 | 1 |  1  |  1  |  1`,
+
+  MUX:
+`// 2-to-1 MULTIPLEXER (MUX)
+// Acts like a digital switch. 
+// Uses a Selector (Sel) to choose which input (D0 or D1) flows to Out.
+// 
+// Out = (D0 AND NOT Sel) OR (D1 AND Sel)
+// 
+// Truth Table:
+// Sel | D0 | D1 | Out
+// ----+----+----+----
+//  0  |  0 |  X |  0   (D0 is routed)
+//  0  |  1 |  X |  1   (D0 is routed)
+//  1  |  X |  0 |  0   (D1 is routed)
+//  1  |  X |  1 |  1   (D1 is routed)`
+};
