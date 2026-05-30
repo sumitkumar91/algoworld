@@ -864,3 +864,61 @@ export const logicSnippets = {
 //  1  |  X |  0 |  0   (D1 is routed)
 //  1  |  X |  1 |  1   (D1 is routed)`
 };
+
+export const floatSnippets = {
+  IEEE754:
+`// IEEE-754 Single Precision (32-bit Float)
+// 
+// Floating point numbers are effectively "Scientific Notation" for computers.
+// Example: -3.14 x 10^2
+// 
+// A 32-bit float breaks this into 3 parts:
+// 1. Sign Bit (1 bit): 0 for positive, 1 for negative.
+// 2. Exponent (8 bits): The power of 2, shifted by a "Bias" of 127.
+// 3. Mantissa / Fraction (23 bits): The precision / digits after the decimal.
+// 
+// The Formula:
+// Value = (-1)^Sign * 2^(Exponent - 127) * (1.Mantissa)
+// 
+// Special Cases:
+// - Exponent = 255, Mantissa = 0  -> Infinity (or -Infinity)
+// - Exponent = 255, Mantissa != 0 -> NaN (Not a Number)
+// - Exponent = 0,   Mantissa = 0  -> 0 (or -0)
+// - Exponent = 0,   Mantissa != 0 -> Denormalized (super tiny numbers)`
+};
+
+export const assemblySnippets = {
+  ISA:
+`// Mini Assembly Instruction Set Architecture (ISA)
+
+// Registers available: R0, R1, R2, R3 (8-bit, values 0-255)
+// Memory available: Slots 0 to 15
+// PC: Program Counter (current line number)
+
+// ----------------------------------------------------
+// COMMANDS:
+// ----------------------------------------------------
+
+MOV dest, src    // Move value from src to dest
+                 // E.g., MOV R0, 5    (Sets R0 to 5)
+                 // E.g., MOV R1, R0   (Copies R0 to R1)
+
+ADD dest, src    // Add src to dest
+                 // E.g., ADD R0, 1    (R0 = R0 + 1)
+                 // E.g., ADD R0, R1   (R0 = R0 + R1)
+
+SUB dest, src    // Subtract src from dest
+                 // E.g., SUB R0, 1    (R0 = R0 - 1)
+
+LOAD dest, addr  // Load from Memory at addr into dest
+                 // E.g., LOAD R0, 10  (R0 = Memory[10])
+
+STORE src, addr  // Store src into Memory at addr
+                 // E.g., STORE R0, 10 (Memory[10] = R0)
+
+JMP line         // Jump PC to line number
+                 // E.g., JMP 5        (Goto Line 5)
+
+JNZ reg, line    // Jump Not Zero
+                 // E.g., JNZ R0, 5    (If R0 != 0, Goto Line 5)`
+};

@@ -18,6 +18,8 @@ import HashTableVisualizer from './pages/HashTableVisualizer';
 import HeapVisualizer from './pages/HeapVisualizer';
 import BitwiseVisualizer from './pages/BitwiseVisualizer';
 import LogicGatesVisualizer from './pages/LogicGatesVisualizer';
+import FloatingPointVisualizer from './pages/FloatingPointVisualizer';
+import AssemblyVisualizer from './pages/AssemblyVisualizer';
 import './App.css';
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
               <Route path="/heap" element={<HeapVisualizer />} />
               <Route path="/bitwise" element={<BitwiseVisualizer />} />
               <Route path="/logic-gates" element={<LogicGatesVisualizer />} />
+              <Route path="/floating-point" element={<FloatingPointVisualizer />} />
+              <Route path="/assembly" element={<AssemblyVisualizer />} />
             </Routes>
           </main>
         </div>

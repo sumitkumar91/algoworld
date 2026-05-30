@@ -1,0 +1,212 @@
+.assembly-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.assembly-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.assembly-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .assembly-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Editor Panel */
+.assembly-editor-container {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.assembly-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-glass);
+  font-family: var(--font-header);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.assembly-editor-content {
+  display: flex;
+  min-height: 300px;
+  max-height: 500px;
+}
+
+.assembly-line-numbers {
+  padding: 1rem 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--border-glass);
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  text-align: right;
+  user-select: none;
+}
+
+.assembly-line-number {
+  line-height: 1.5;
+  padding: 0 0.5rem;
+}
+
+.assembly-line-number.active {
+  color: #00e5ff;
+  font-weight: bold;
+  background: rgba(0, 229, 255, 0.1);
+  border-radius: 4px;
+}
+
+.assembly-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 1rem;
+  resize: none;
+  outline: none;
+  white-space: pre;
+  overflow: auto;
+}
+
+.assembly-controls {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--border-glass);
+}
+
+/* Error Banner */
+.assembly-error {
+  padding: 0.75rem 1rem;
+  background: rgba(255, 23, 68, 0.1);
+  border-left: 4px solid #ff1744;
+  color: #ff1744;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+/* Visualization Panel */
+.assembly-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.assembly-visuals-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .assembly-visuals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Registers */
+.registers-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.register-card.updated {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.register-label {
+  font-weight: bold;
+  color: var(--text-secondary);
+  font-family: var(--font-header);
+}
+
+.register-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  min-width: 48px;
+  text-align: center;
+}
+
+/* RAM / Memory Grid */
+.memory-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.memory-cell {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.memory-cell.updated {
+  background: rgba(157, 78, 221, 0.2);
+  border-color: #9d4edd;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
+}
+
+.memory-address {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.25rem;
+}
+
+.memory-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}

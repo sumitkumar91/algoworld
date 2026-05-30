@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code } from 'lucide-react';
 
 export const categories = [
   {
@@ -113,6 +113,22 @@ export const categories = [
         icon: <GitMerge size={32} className="sim-icon" style={{color: '#cddc39'}} />,
         path: '/logic-gates',
         color: 'yellow'
+      },
+      {
+        id: 'floating-point',
+        title: 'IEEE-754 Floating Point',
+        description: 'See how decimals are stored in RAM! Type a number to rip it apart into its 32-bit Sign, Exponent, and Mantissa blocks.',
+        icon: <Cpu size={32} className="sim-icon" style={{color: '#ff4081'}} />,
+        path: '/floating-point',
+        color: 'pink'
+      },
+      {
+        id: 'assembly',
+        title: 'Assembly Sandbox',
+        description: 'Write raw CPU instructions (MOV, ADD, JMP) and execute them step-by-step on a virtual 8-bit architecture.',
+        icon: <Code size={32} className="sim-icon" style={{color: '#b388ff'}} />,
+        path: '/assembly',
+        color: 'purple'
       }
     ]
   },
