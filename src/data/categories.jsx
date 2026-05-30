@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine } from 'lucide-react';
 
 export const categories = [
   {
@@ -80,6 +80,14 @@ export const categories = [
         icon: <Hash size={32} className="sim-icon hashmap-icon" style={{color: '#c084fc'}} />,
         path: '/hashmap',
         color: 'purple'
+      },
+      {
+        id: 'heap',
+        title: 'Binary Heap',
+        description: 'Visualize Min-Heaps and Max-Heaps with bubble-up and sink-down operations, seeing both the tree and the array backing it.',
+        icon: <Layers size={32} className="sim-icon heap-icon" style={{color: '#f97316'}} />,
+        path: '/heap',
+        color: 'orange'
       }
     ]
   },

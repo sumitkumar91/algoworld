@@ -15,6 +15,7 @@ import LinkedListVisualizer from './pages/LinkedListVisualizer';
 import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
 import ArrayVisualizer from './pages/ArrayVisualizer';
 import HashTableVisualizer from './pages/HashTableVisualizer';
+import HeapVisualizer from './pages/HeapVisualizer';
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               <Route path="/stacks-queues" element={<StacksQueuesVisualizer />} />
               <Route path="/array" element={<ArrayVisualizer />} />
               <Route path="/hashmap" element={<HashTableVisualizer />} />
+              <Route path="/heap" element={<HeapVisualizer />} />
             </Routes>
           </main>
         </div>

@@ -606,3 +606,103 @@ ALGORITHM REMOVE(Key)
 // Keep legacy export for backward compat
 export const hashmapSnippets = hashtableSnippets.chaining;
 
+
+export const heapSnippets = {
+  min: {
+    insert:
+`// Min-Heap INSERT
+// Time: O(log n) | Space: O(1)
+// After inserting, sift up to restore heap property.
+ALGORITHM INSERT(value)
+    heap.push(value)           // step 1: append to end
+    i = heap.length - 1        // start at the new node
+
+    while i > 0
+        parent = floor((i - 1) / 2)
+
+        if heap[i] < heap[parent]   // min-heap violation
+            swap(heap[i], heap[parent])
+            i = parent              // continue upward
+        else
+            break                   // heap property restored`,
+
+    extract:
+`// Min-Heap EXTRACT_MIN
+// Time: O(log n) | Space: O(1)
+// Remove root, move last to root, sift down.
+ALGORITHM EXTRACT_MIN()
+    if heap is empty: return null
+
+    min    = heap[0]           // save the minimum (root)
+    heap[0] = heap[last]       // move last element to root
+    heap.pop()                 // remove the last element
+
+    i = 0
+    while true
+        left     = 2 * i + 1
+        right    = 2 * i + 2
+        smallest = i
+
+        if left  < heap.size and heap[left]  < heap[smallest]
+            smallest = left
+        if right < heap.size and heap[right] < heap[smallest]
+            smallest = right
+
+        if smallest == i
+            break              // heap property satisfied
+        
+        swap(heap[i], heap[smallest])
+        i = smallest
+
+    return min`,
+  },
+
+  max: {
+    insert:
+`// Max-Heap INSERT
+// Time: O(log n) | Space: O(1)
+// After inserting, sift up to restore heap property.
+ALGORITHM INSERT(value)
+    heap.push(value)           // step 1: append to end
+    i = heap.length - 1        // start at the new node
+
+    while i > 0
+        parent = floor((i - 1) / 2)
+
+        if heap[i] > heap[parent]   // max-heap violation
+            swap(heap[i], heap[parent])
+            i = parent              // continue upward
+        else
+            break                   // heap property restored`,
+
+    extract:
+`// Max-Heap EXTRACT_MAX
+// Time: O(log n) | Space: O(1)
+// Remove root, move last to root, sift down.
+ALGORITHM EXTRACT_MAX()
+    if heap is empty: return null
+
+    max    = heap[0]           // save the maximum (root)
+    heap[0] = heap[last]       // move last element to root
+    heap.pop()                 // remove the last element
+
+    i = 0
+    while true
+        left    = 2 * i + 1
+        right   = 2 * i + 2
+        largest = i
+
+        if left  < heap.size and heap[left]  > heap[largest]
+            largest = left
+        if right < heap.size and heap[right] > heap[largest]
+            largest = right
+
+        if largest == i
+            break              // heap property satisfied
+        
+        swap(heap[i], heap[largest])
+        i = largest
+
+    return max`,
+  },
+};
