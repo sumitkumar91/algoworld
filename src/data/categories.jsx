@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code, Database, Clock } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code, Database, Clock, Shuffle } from 'lucide-react';
 
 export const categories = [
   {
@@ -149,11 +149,11 @@ export const categories = [
     ]
   },
   {
-    id: 'number-theory',
-    title: 'Number Theory',
-    description: 'Fascinating visual explorations of primes, divisibility, and modular arithmetic.',
-    color: 'green',
-    icon: <Hash size={32} className="sim-icon" style={{color: '#00e676'}} />,
+    id: 'discrete-math',
+    title: 'Discrete Mathematics',
+    description: 'Visualizations of primes, cryptography, combinatorics, and logic.',
+    color: 'yellow',
+    icon: <Grid size={32} className="sim-icon" style={{color: '#facc15'}} />,
     modules: [
       {
         id: 'sieve',
@@ -170,6 +170,22 @@ export const categories = [
         icon: <Clock size={32} className="sim-icon" style={{color: '#ff4081'}} />,
         path: '/modular',
         color: 'pink'
+      },
+      {
+        id: 'combinatorics',
+        title: 'Combinatorics',
+        description: 'Visualize Permutations vs Combinations and understand the true meaning of nCr and nPr.',
+        icon: <Grid size={32} className="sim-icon" style={{color: '#facc15'}} />,
+        path: '/combinatorics',
+        color: 'yellow'
+      },
+      {
+        id: 'derangements',
+        title: 'Derangements',
+        description: 'The Hat Check Problem: Visualize permutations where NO element is in its original position (!n).',
+        icon: <Shuffle size={32} className="sim-icon" style={{color: '#facc15'}} />,
+        path: '/derangements',
+        color: 'yellow'
       }
     ]
   },

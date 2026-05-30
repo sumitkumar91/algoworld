@@ -24,6 +24,8 @@ import CacheVisualizer from './pages/CacheVisualizer';
 import PipelineVisualizer from './pages/PipelineVisualizer';
 import SieveVisualizer from './pages/SieveVisualizer';
 import ModularArithmetic from './pages/ModularArithmetic';
+import CombinatoricsVisualizer from './pages/CombinatoricsVisualizer';
+import DerangementVisualizer from './pages/DerangementVisualizer';
 import './App.css';
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
               <Route path="/pipeline" element={<PipelineVisualizer />} />
               <Route path="/sieve" element={<SieveVisualizer />} />
               <Route path="/modular" element={<ModularArithmetic />} />
+              <Route path="/combinatorics" element={<CombinatoricsVisualizer />} />
+              <Route path="/derangements" element={<DerangementVisualizer />} />
             </Routes>
           </main>
         </div>
