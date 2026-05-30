@@ -137,6 +137,14 @@ export const categories = [
         icon: <Database size={32} className="sim-icon" style={{color: '#ffeb3b'}} />,
         path: '/caching',
         color: 'yellow'
+      },
+      {
+        id: 'pipeline',
+        title: 'CPU Instruction Pipeline',
+        description: 'Watch instructions flow through a 5-stage RISC pipeline. Explore Data Hazards, Branch Flushes, and Forwarding.',
+        icon: <Layers size={32} className="sim-icon" style={{color: '#ff1744'}} />,
+        path: '/pipeline',
+        color: 'red'
       }
     ]
   },

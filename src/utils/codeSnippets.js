@@ -943,3 +943,30 @@ export const cacheSnippets = {
 // LRU looks at the timestamps of all cache lines and kicks out the one 
 // that hasn't been accessed in the longest time.`
 };
+
+export const pipelineSnippets = {
+  PIPELINE:
+`// CPU Instruction Pipelining
+
+// Modern CPUs don't execute one instruction completely before starting the next.
+// Instead, they split execution into 5 stages, like a factory assembly line.
+
+// 1. IF  (Instruction Fetch):  Grab the instruction from memory.
+// 2. ID  (Instruction Decode): Figure out what the instruction means.
+// 3. EX  (Execute):            Perform the math (ALU).
+// 4. MEM (Memory Access):      Read/Write to data memory if needed.
+// 5. WB  (Writeback):          Save the result back into the register.
+
+// --- HAZARDS (The bad stuff) ---
+
+// DATA HAZARD: 
+// Instruction B needs data that Instruction A is currently calculating.
+// Instruction B must STALL (wait) until Instruction A reaches the WB stage.
+// (Unless Data Forwarding is enabled, which routes data directly from EX to EX!)
+
+// CONTROL HAZARD (Branch Flush):
+// A "Jump" instruction changes the flow of the program. However, the CPU 
+// already fetched the next sequential instructions into the IF and ID stages!
+// When the Jump executes, it realizes it grabbed the wrong instructions, 
+// so it flushes (deletes) them from the pipeline.`
+};

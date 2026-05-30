@@ -21,6 +21,7 @@ import LogicGatesVisualizer from './pages/LogicGatesVisualizer';
 import FloatingPointVisualizer from './pages/FloatingPointVisualizer';
 import AssemblyVisualizer from './pages/AssemblyVisualizer';
 import CacheVisualizer from './pages/CacheVisualizer';
+import PipelineVisualizer from './pages/PipelineVisualizer';
 import './App.css';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
               <Route path="/floating-point" element={<FloatingPointVisualizer />} />
               <Route path="/assembly" element={<AssemblyVisualizer />} />
               <Route path="/caching" element={<CacheVisualizer />} />
+              <Route path="/pipeline" element={<PipelineVisualizer />} />
             </Routes>
           </main>
         </div>
