@@ -919,6 +919,27 @@ STORE src, addr  // Store src into Memory at addr
 JMP line         // Jump PC to line number
                  // E.g., JMP 5        (Goto Line 5)
 
-JNZ reg, line    // Jump Not Zero
-                 // E.g., JNZ R0, 5    (If R0 != 0, Goto Line 5)`
+// JNZ reg, line    // Jump Not Zero
+//                  // E.g., JNZ R0, 5    (If R0 != 0, Goto Line 5)`
+};
+
+export const cacheSnippets = {
+  LRU:
+`// Memory & Caching Architecture Concepts
+
+// 1. Spatial Locality:
+// When the CPU requests Address X, it usually wants Address X+1 soon after.
+// Therefore, the CPU doesn't just fetch Address X from RAM. It fetches 
+// an entire "Block" (e.g., Addresses X, X+1, X+2, X+3) and stores the 
+// whole block in the ultra-fast L1 Cache.
+
+// 2. Cache Hits vs Misses:
+// Hit: The requested data is already in the Cache. (Super fast!)
+// Miss: The data isn't in the Cache. The CPU must wait for RAM. (Slow!)
+
+// 3. LRU Eviction Policy (Least Recently Used):
+// Caches are tiny. When the Cache is full and a new block needs to be 
+// loaded from RAM, which old block gets kicked out?
+// LRU looks at the timestamps of all cache lines and kicks out the one 
+// that hasn't been accessed in the longest time.`
 };

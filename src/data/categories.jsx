@@ -1,4 +1,4 @@
-import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code } from 'lucide-react';
+import { Layers, DoorOpen, BarChart2, GitMerge, TrendingUp, Hash, Network, Link2, Box, Grid, Search, ArrowDownToLine, Cpu, Code, Database } from 'lucide-react';
 
 export const categories = [
   {
@@ -129,6 +129,14 @@ export const categories = [
         icon: <Code size={32} className="sim-icon" style={{color: '#b388ff'}} />,
         path: '/assembly',
         color: 'purple'
+      },
+      {
+        id: 'caching',
+        title: 'Memory & Caching',
+        description: 'Visualize how the CPU interacts with RAM. Explore L1 Caches, Spatial Locality, and the LRU Eviction Policy.',
+        icon: <Database size={32} className="sim-icon" style={{color: '#ffeb3b'}} />,
+        path: '/caching',
+        color: 'yellow'
       }
     ]
   },
