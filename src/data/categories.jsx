@@ -88,6 +88,14 @@ export const categories = [
         icon: <Layers size={32} className="sim-icon heap-icon" style={{color: '#f97316'}} />,
         path: '/heap',
         color: 'orange'
+      },
+      {
+        id: 'btree',
+        title: 'B-Tree',
+        description: 'The multi-way search tree that powers databases. Watch nodes split and push keys up as they get full.',
+        icon: <Layers size={32} className="sim-icon" style={{color: '#4ade80'}} />,
+        path: '/btree',
+        color: 'green'
       }
     ]
   },

@@ -1,0 +1,192 @@
+.btree-container {
+  padding-bottom: 4rem;
+}
+
+.btree-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.btree-header h1 {
+  font-size: 2.5rem;
+  color: #4ade80; /* Match data-structures green */
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btree-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .btree-layout {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+.btree-controls-card {
+  padding: 1.5rem;
+}
+
+.control-group {
+  margin-bottom: 1.5rem;
+}
+
+.control-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-row input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-row input:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.2);
+}
+
+.input-row button {
+  background: #4ade80;
+  color: #000;
+  border: none;
+  padding: 0 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.input-row button:hover:not(:disabled) {
+  background: #22c55e;
+}
+
+.input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btree-canvas-container {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  min-height: 500px;
+  overflow-x: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Recursive B-Tree Styles */
+.tree-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.btree-node-block {
+  display: flex;
+  background: var(--bg-secondary);
+  border: 2px solid #4ade80;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.btree-key {
+  padding: 0.5rem 1rem;
+  min-width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btree-key:last-child {
+  border-right: none;
+}
+
+.btree-children-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Drawing Lines */
+/* Since it's hard to draw exact SVG lines without knowing coordinates in a purely CSS flex layout, we'll use an SVG overlay if possible, or just rely on CSS border hacks for basic connection. For simplicity and robustness, we will use SVG lines drawn dynamically based on refs. */
+
+.lines-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tree-line {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 2px;
+  fill: none;
+}
+
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-secondary);
+  font-style: italic;
+}

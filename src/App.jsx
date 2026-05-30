@@ -16,6 +16,7 @@ import StacksQueuesVisualizer from './pages/StacksQueuesVisualizer';
 import ArrayVisualizer from './pages/ArrayVisualizer';
 import HashTableVisualizer from './pages/HashTableVisualizer';
 import HeapVisualizer from './pages/HeapVisualizer';
+import BTreeVisualizer from './pages/BTreeVisualizer';
 import BitwiseVisualizer from './pages/BitwiseVisualizer';
 import LogicGatesVisualizer from './pages/LogicGatesVisualizer';
 import FloatingPointVisualizer from './pages/FloatingPointVisualizer';
@@ -51,6 +52,7 @@ function App() {
               <Route path="/array" element={<ArrayVisualizer />} />
               <Route path="/hashmap" element={<HashTableVisualizer />} />
               <Route path="/heap" element={<HeapVisualizer />} />
+              <Route path="/btree" element={<BTreeVisualizer />} />
               <Route path="/bitwise" element={<BitwiseVisualizer />} />
               <Route path="/logic-gates" element={<LogicGatesVisualizer />} />
               <Route path="/floating-point" element={<FloatingPointVisualizer />} />
